@@ -1,0 +1,62 @@
+<%- include('../includes/header.ejs') %>
+<style>
+    
+    main{
+        display: flexbox;
+    }
+    .input-box{
+        margin: 20px 10px 20px 10px;
+    }
+    form{
+        margin: auto;
+        width: 80%;
+        border: 2px solid blueviolet;
+        background-color: rgb(196, 184, 208);
+        border-radius: 30px;
+        box-shadow: inset;
+        opacity: 80%;
+    }
+
+#Email{
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    height: 40px;
+}
+#Password{
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    height: 40px;
+}
+label{
+color: rgb(41, 0, 128);
+text-align: left;
+font-size: 20px;
+}
+Email:hover{
+    border-bottom: 2px solid white;
+    box-shadow: 3px, 3px, 4px, white;
+}
+Password:hover{
+    border-bottom: 2px solid blueviolet;
+    box-shadow: 3px, 3px, 4px, white;
+}
+
+</style>
+</head>
+<body>
+    <main>
+        <h1>Cash Grab</h1>
+        <form action="/otp" method="post">
+            <h4>Enter OTP</h4>
+            <div class="input-box">
+                <label for="Email">OTP</label>
+                <input type="tel" name="OTP" id="Email">
+            </div>
+            <button type="submit" >Confirm</button>
+        </form>
+        <input type="button" value="Resend OTP">
+    </main>
+</body>
+</html>

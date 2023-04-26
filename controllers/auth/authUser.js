@@ -65,6 +65,11 @@ exports.otpPage=(req,res)=>{
 exports.otpPost=(req,res)=>{
     const {OTP}=req.body;
     Users.findOne({where:{
-
-    }})
+        otp:OTP
+    }}).then(confirmed=>{
+        res.redirect('/user-dashboard')
+    }).catch(err=>{
+        console.log(err)
+    })
 }
+

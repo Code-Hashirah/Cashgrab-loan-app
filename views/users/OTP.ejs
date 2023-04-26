@@ -1,20 +1,41 @@
 <%- include('../includes/header.ejs') %>
 <style>
-    
+    body{
+        /* background-image: url('/images/backgroundImg.jpg'); */
+        background-color:rgb(12, 23, 51) ;
+    }
+    h1,h4{
+        text-align: center;
+    }
     main{
         display: flexbox;
+        background-image: url('/images/backgroundImg.jpg');
+        color: white;
+        height: 600px;
+        display: flexbox;
+        max-width: 100%;
+
     }
     .input-box{
-        margin: 20px 10px 20px 10px;
+        /* margin: 20px 10px 20px 10px; */
+        margin: auto;
+        width: 80%;
+        padding-bottom: 20px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
     }
     form{
         margin: auto;
-        width: 80%;
-        border: 2px solid blueviolet;
-        background-color: rgb(196, 184, 208);
+        width:40%;
+        border: 2px solid white;
+        color: white;
+        background-color: rgb(12, 23, 51);
         border-radius: 30px;
         box-shadow: inset;
-        opacity: 80%;
+        opacity: 50%;
+        display: flexbox;
+        height: 80%;
     }
 
 #Email{
@@ -22,27 +43,45 @@
     border: none;
     border-radius: 9px;
     height: 40px;
+    background-color: rgb(2, 6, 16);
+    color: white;
 }
 #Password{
     width: 100%;
     border: none;
     border-radius: 9px;
     height: 40px;
+    background-color: rgb(2, 6, 16);
+    color: white;
 }
 label{
-color: rgb(41, 0, 128);
-text-align: left;
-font-size: 20px;
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    /* margin-bottom: 50px; */
 }
 Email:hover{
     border-bottom: 2px solid white;
     box-shadow: 3px, 3px, 4px, white;
+   
 }
 Password:hover{
     border-bottom: 2px solid blueviolet;
-    box-shadow: 3px, 3px, 4px, white;
+    box-shadow: 3px, 9px, 14px, white;
 }
-
+.btn{
+    width: 70%;
+    height: 30px;
+    /* margin: 50px 20px 50px 60px; */
+    justify-self: center;
+    border-radius: 10px;
+    font-size: medium;
+    font-weight: 500px;
+}
+.btn:hover{
+    background-image: linear-gradient(rgb(4, 4, 13), black);
+    color: white;
+}
 </style>
 </head>
 <body>
@@ -54,9 +93,13 @@ Password:hover{
                 <label for="Email">OTP</label>
                 <input type="tel" name="OTP" id="Email">
             </div>
-            <button type="submit" >Confirm</button>
+            <div class="input-box">
+                <button type="submit" class="btn">Confirm</button>
+            </div>
+            <input type="button" value="Resend OTP" class="btn">
+            
         </form>
-        <input type="button" value="Resend OTP">
+       
     </main>
 </body>
 </html>

@@ -1,11 +1,152 @@
 <%- include ('includes/header.ejs') %>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: rgb(12, 23, 51);
+    }
+ 
+    #main-page{
+        background-color: rgb(12, 23, 51);
+
+    }
+#section{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.pcImage{
+    width: 350px;
+    height: 350px;
+}
+.box{
+    color: white;
+    padding: 5px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    justify-content: space-evenly;
+}
+.box:hover{
+  zoom: 1;
+}
+.steps:hover{
+    box-shadow: 2px 2px 4px white;
+    /* border: 2px groove white; */
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(12, 23, 51);
+}
+
+/* #steps{
+    text-align: center;
+} */
+.carousel {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+    }
+  
+.carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+  
+    .carousel-slide.active {
+      opacity: 1;
+    }
+
+    .carousel{
+    width: 100%;
+    height: 300px;
+}
+.Message{
+    position: absolute;
+    top: 150px;
+    left: 500px;
+    right: auto;
+    color: white;
+    font-family: fantasy;
+    font-size: xx-large;
+}
+</style>
 </head>
 <body>
 <main id="main-page">
     <%- include ('includes/navbar.ejs') %>
-    <h1>Cash Grab</h1>
-</main>    
+   
+    <section id="section">
+        <div class="box">
+            <img class="pcImage" src="/images/loan-image1.png" alt="image1">  
+        </div>
+        <div class="box">
+           <img class="pcImage" src="/images/loan-image3.jpg" alt="image2">
+        </div>
+        <div class="box">
+            <h3 class="steps">Get Loans instantly in four simple steps</h3>
+            <p class="steps">Register</p>
+            <p class="steps">Verify account</p>
+            <p class="steps">Complete account</p>
+            <p class="steps">Apply for a loan</p>
+        </div>
+    </section>
+   
+    
+   
+</main>
+<div class="carousel">
+    <h2 class="Message">Get Instant Loans
+        <small>   from us...</small>
+    </h2>
+    <div class="carousel-slide">
+       
+      <img class="carousel" src="images/loan-image3.jpg" alt="Image 1">
+    </div>
 
+    <!-- <h2 class="Message">Get Instant Loans</h2> -->
+    <div class="carousel-slide">
+      <img class="carousel" src="images/loan-image2.jpg" alt="Image 2">
+    </div>
+    <div class="carousel-slide">
+      
+      <img class="carousel" src="images/backgroundImg.jpg" alt="Image 3">
+    </div>
+  </div>    
+
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".carousel-slide");
+    const totalSlides = slides.length;
+    const carousel = document.querySelector(".carousel");
+  
+    function showSlide() {
+      for (let slide of slides) {
+        slide.classList.remove("active");
+      }
+      slides[currentSlide].classList.add("active");
+    }
+  
+    function nextSlide() {
+      currentSlide++;
+      if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+      }
+      showSlide();
+    }
+  
+    setInterval(nextSlide, 2000);
+  </script>
 <%- include ('includes/footer.ejs') %>
 </body>
 </html>

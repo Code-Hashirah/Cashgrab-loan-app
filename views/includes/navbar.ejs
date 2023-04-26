@@ -1,0 +1,58 @@
+<%- include('header.ejs') %>
+<style>
+    #navbar{
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        margin:10px, 0, 20px, 0;
+        padding: 10px;
+    }
+#list{
+
+    display: flex;
+    list-style-type: none;
+    justify-content: space-evenly;
+}
+a{
+    text-decoration: none;
+    /* border: 1px solid white; */
+    padding: 3px;
+    color: white;
+}
+.nav-list{
+    background-color: rgb(12, 23, 51);
+    color: white;
+    border-radius: 5px;
+}
+.active{
+    background-color: white;
+    color: rgb(12, 23, 51);
+    border-radius: 5px;
+}
+.active:hover{
+    background-color: rgb(12, 23, 51);
+    color: white;
+}
+.nav-list:hover{
+    background-color: white;
+    color: rgb(12, 23, 51);
+}
+h1{
+        color: white;
+        text-shadow: 9px 4px 6px white;
+        text-align: center;
+    }
+
+</style>
+</head>
+<marquee behavior="relative" direction="reverse"><h1>Cash Grab</h1></marquee>
+<nav id="navbar">
+    <ul id="list">
+        <li class="nav-list"> <a href="/" class="nav-list">Home</a></li>
+        <li class="nav-list"> <a href="/" class="nav-list">Dashboard</a></li>
+        <li class="nav-list"> <a href="/sign-In" class="nav-list">Login</a></li>
+        <li class="active"> <a href="/sign-Up" class="active">Create Account</a></li>
+        <li class="nav-list"> <a href="/" class="nav-list">Contact Us</a></li>
+    </ul>
+</nav>

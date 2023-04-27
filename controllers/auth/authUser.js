@@ -43,7 +43,7 @@ exports.signUpPost=(req,res)=>{
             }
         })
         transport.sendMail(email).then((response)=>{
-            res.redirect('/')
+            // res.redirect('/')
         }).catch(err=>{
             console.log(err)
         })
@@ -67,6 +67,8 @@ exports.otpPost=(req,res)=>{
     Users.findOne({where:{
         otp:OTP
     }}).then(confirmed=>{
+        req.session.isLoggedIn=true;
+        req.session.user=confirmed;
         res.redirect('/user-dashboard')
     }).catch(err=>{
         console.log(err)

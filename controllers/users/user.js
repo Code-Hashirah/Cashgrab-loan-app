@@ -5,3 +5,7 @@ const bcrypt=require('bcrypt')
 exports.homePage=(req, res)=>{
     res.render('index.ejs', {title:"Cash Grab Home"})
 }
+
+exports.dashboardPage=(req,res)=>{
+    res.render('users/dashboard.ejs',{title:"Cash Grab Dashboard"})
+}

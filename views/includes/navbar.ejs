@@ -1,53 +1,94 @@
-<%- include('header.ejs') %>
-<style>
-    #navbar{
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        width: 100%;
-        margin:10px, 0, 20px, 0;
-        padding: 10px;
-    }
-#list{
 
-    display: flex;
-    list-style-type: none;
-    justify-content: space-evenly;
+<style>
+/* Navigation Bar */
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  margin:10px, 0, 20px, 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(12, 23, 51);
+  color: white;
 }
-a{
-    text-decoration: none;
-    /* border: 1px solid white; */
-    padding: 3px;
-    color: white;
+
+/* Navigation List */
+#list{
+  display: none;
 }
-.nav-list{
-    background-color: rgb(12, 23, 51);
-    color: white;
-    border-radius: 5px;
+
+#list.active{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
-.active{
-    background-color: white;
-    color: rgb(12, 23, 51);
-    border-radius: 5px;
+
+#list li {
+  text-align: center;
+  margin: 10px;
+  list-style-type: none;
 }
-.active:hover{
-    background-color: rgb(12, 23, 51);
-    color: white;
+
+#list a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
 }
-.nav-list:hover{
-    background-color: white;
-    color: rgb(12, 23, 51);
+
+#list a:hover {
+  background-color: white;
+  color: rgb(12, 23, 51);
+}
+
+/* Navigation Toggle Button */
+.navbar-toggle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+.icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: white;
+  margin: 4px 0;
 }
 h1{
         color: white;
         text-shadow: 9px 4px 6px white;
-        text-align: center;
+        /* text-align: center; */
     }
+@media only screen and (min-width: 768px) {
+  #list {
+    display: flex;
+    justify-content: space-evenly;
+    width: auto;
+  }
+  .navbar-toggle {
+    display: none;
+  }
+}
 
 </style>
 </head>
-<marquee behavior="relative" direction="reverse"><h1>Cash Grab</h1></marquee>
+<marquee behavior="sliding" scrollamount="10" direction="reverse"><h1>Cash Grab</h1></marquee>
 <nav id="navbar">
+    <div class="navbar">
+        <button class="navbar-toggle" type="button">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
     <ul id="list">
         <li class="nav-list"> <a href="/" class="nav-list">Home</a></li>
         <li class="nav-list"> <a href="/" class="nav-list">Dashboard</a></li>

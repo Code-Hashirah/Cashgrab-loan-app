@@ -16,7 +16,9 @@
 #section{
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: space-evenly;
+    border: 1px solid white;
 }
 .pcImage{
     width: 350px;
@@ -30,6 +32,8 @@
     flex-direction: column;
     /* justify-content: space-between; */
     justify-content: space-evenly;
+    padding: 15px;
+   
 }
 .box:hover{
   zoom: 1;
@@ -45,39 +49,53 @@
 /* #steps{
     text-align: center;
 } */
-.carousel {
-      position: relative;
-      width: 100%;
-      height: 500px;
-      overflow: hidden;
-    }
-  
-.carousel-slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-  
-    .carousel-slide.active {
-      opacity: 1;
-    }
-
-    .carousel{
-    width: 100%;
-    height: 300px;
+span{
+    color: fuchsia;
+    font-size: 25px;
+    border: 5px;
 }
-.Message{
-    position: absolute;
-    top: 150px;
-    left: 500px;
-    right: auto;
-    color: white;
-    font-family: fantasy;
-    font-size: xx-large;
+pre{
+    padding: 5px;
+    text-align: justify;
+}
+#manifesto{
+    font-style: italic;
+    font-size: 18px;
+}
+ul{
+    list-style-type: none;
+}
+ul>li{
+    margin: 10px;
+}
+#start{
+    background-color: white;
+    color: rgb(12, 23, 51);
+    /* border-radius: 5px; */
+    border: 1px solid white;
+    margin-top:50px ;
+    padding: 5px;
+}
+#start:hover{
+    background-color: rgb(12, 23, 51);
+    color:  white;
+}
+
+/* media query responsiveness  */
+
+@media only screen and (max-width: 768px) {
+  body {
+    /* width: 768px; */
+    overflow-x: hidden;
+    }
+  #section{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+  }
+  .box{
+    width: 100%;
+  }
 }
 </style>
 </head>
@@ -90,63 +108,30 @@
             <img class="pcImage" src="/images/loan-image1.png" alt="image1">  
         </div>
         <div class="box">
-           <img class="pcImage" src="/images/loan-image3.jpg" alt="image2">
+            <p id="manifesto">
+                Cash Grab is your No <span class="fas fa-award"></span>1 online loan App. <br>
+                Get instant loan in less than ten minutes of applying. <br>
+                Follow these four steps ...
+                <ul>
+                    <li>Sign Up</li>
+                    <li>Complete Profile</li>
+                    <li>Simply Apply</li>
+                    <li>Follow Your dreams</li>
+                    <li><a href="/sign-up" id="start">Get Started</a></li>
+                </ul>
+            </p>
         </div>
-        <div class="box">
-            <h3 class="steps">Get Loans instantly in four simple steps</h3>
-            <p class="steps">Register</p>
-            <p class="steps">Verify account</p>
-            <p class="steps">Complete account</p>
-            <p class="steps">Apply for a loan</p>
-        </div>
-    </section>
-   
-    
-   
-</main>
-<div class="carousel">
-    <h2 class="Message">Get Instant Loans
-        <small>   from us...</small>
-    </h2>
-    <div class="carousel-slide">
        
-      <img class="carousel" src="images/loan-image3.jpg" alt="Image 1">
-    </div>
+        <div class="box">
+            <h3 class="steps">What do you need a loan for? <span>&#128525</span></h3>
+            <p class="steps">Buy a house? <span class="fa-solid fa-house"></span></p>
+            <p class="steps">Buy a car? <span class="fa-solid fa-car"></span></p>
+            <p class="steps">Start a business? <span class="fa-solid fa-business-time"></span></p>
+            <p class="steps">Study abroad? <span class="fa-solid fa-plane"></span></p>
+        </div>
+    </section>   
+</main>
 
-    <!-- <h2 class="Message">Get Instant Loans</h2> -->
-    <div class="carousel-slide">
-      <img class="carousel" src="images/loan-image2.jpg" alt="Image 2">
-    </div>
-    <div class="carousel-slide">
-      
-      <img class="carousel" src="images/backgroundImg.jpg" alt="Image 3">
-    </div>
-  </div>    
-
-
-<script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".carousel-slide");
-    const totalSlides = slides.length;
-    const carousel = document.querySelector(".carousel");
-  
-    function showSlide() {
-      for (let slide of slides) {
-        slide.classList.remove("active");
-      }
-      slides[currentSlide].classList.add("active");
-    }
-  
-    function nextSlide() {
-      currentSlide++;
-      if (currentSlide >= totalSlides) {
-        currentSlide = 0;
-      }
-      showSlide();
-    }
-  
-    setInterval(nextSlide, 2000);
-  </script>
 <%- include ('includes/footer.ejs') %>
 </body>
 </html>

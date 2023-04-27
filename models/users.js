@@ -52,6 +52,10 @@ const users=sequelize.define("users",{
     otp:{
         type:DataTypes.INTEGER(6),
         allowNull:false
+    },
+    address:{
+        type:DataTypes.STRING(150),
+        allowNull:true
     }
 
 })

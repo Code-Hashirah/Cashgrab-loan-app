@@ -1,4 +1,32 @@
 <script src="bootstrap/boostrap/min.js"></script>
+<%- include ('header.ejs') %>
+<style>
+    img{
+        width: 100%;
+    }
+    div{
+        margin-top: 10px;
+    }
+    .list{
+        list-style-type: none;
+        display:inline;
+    }
+    @media only screen and (max-width:768px) {
+        footer{
+            max-width: 768px;
+        }
+    }
+</style>
+</head>
 <footer>
-    
+    <ul>
+        <li class="list"> <span class="fa-solid fa-whatsapp"></span> </li>
+        <li class="list"> <span class="fa-solid fa-linkedin"></span> </li>
+        <li class="list"> <span class="fa-solid fa-facebook"></span> </li>
+        <li class="list"> <span class="fa-solid fa-twitter"></span> </li>
+        <li class="list"> <span class="fa-solid fa-youtube"></span> </li>
+    </ul>
+    <div>
+        <img src="/images/footerImg.png" alt="footer">
+    </div>
 </footer>

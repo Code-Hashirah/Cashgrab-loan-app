@@ -2,6 +2,7 @@ const Users=require('../../models/users')
 const bcrypt=require('bcrypt')
 const session = require('express-session')
 const nodemailer=require('nodemailer')
+
 exports.signUp=(req,res)=>{
     res.render('users/registration', {title:"Cash Grab Sign Up"})
 }
@@ -75,3 +76,31 @@ exports.otpPost=(req,res)=>{
     })
 }
 
+exports.signInPage=(req,res)=>{
+  
+    res.render('users/login.ejs', {title:"Cash Grab Sign-In"})
+   
+}
+
+exports.signIn=(req,res)=>{
+    const {Email, Password}=req.body
+    Users.findOne({where:{
+        email:Email
+    }}).then(userDetails=>{
+        bcrypt.compare(Password,userDetails.password).then(verifiedUser=>{
+            if(!verifiedUser){
+                res.redirect('/sign-in')
+            }
+            req.session.isLoggedIn=true;
+            req.session.user=userDetails
+            return req.session.save(()=>{
+                res.redirect('/user-dashboard')
+            })
+        })
+    })
+}
+exports.signOut=(req,res)=>{
+    req.session.destroy(()=>{
+      return   res.redirect('/sign-in')
+    }) 
+}

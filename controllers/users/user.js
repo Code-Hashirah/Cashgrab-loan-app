@@ -7,5 +7,25 @@ exports.homePage=(req, res)=>{
 }
 
 exports.dashboardPage=(req,res)=>{
-    res.render('users/dashboard.ejs',{title:"Cash Grab Dashboard"})
+    let UserData=req.session.user
+    let user=[];
+    for(let value in UserData){
+        user.push(value)
+    }
+    console.log(user.length)
+   let count=0;
+    for(let value in UserData){
+        if(UserData[value]!==null){
+            count++
+        }
+    }
+    console.log(count)
+    let total=user.length;
+    let complete ;
+    complete=Math.ceil( count/total*100)
+    console.log(complete+"%")   
+    
+    res.render('users/dashboard.ejs',{title:"Cash Grab Dashboard", User:UserData, Percent:complete})
+    // console.log(UserData)
+    // console.log("hello")
 }

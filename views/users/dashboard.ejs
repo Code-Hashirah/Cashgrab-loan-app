@@ -1,0 +1,134 @@
+<%- include ('../includes/header.ejs') %>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: rgb(12, 23, 51);
+    }
+ 
+    #main-page{
+        background-color: rgb(12, 23, 51);
+
+    }
+.section{
+    display: flex;
+    flex-direction: row-reverse;
+    /* justify-content: space-between; */
+    justify-content: space-evenly;
+    border: 1px solid white;
+}
+
+.box{
+    color: white;
+    /* padding: 5px; */
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+   
+}
+.box:hover{
+  zoom: 1;
+}
+
+
+
+span{
+    color: fuchsia;
+    font-size: 25px;
+    border: 5px;
+}
+/* #progBG{
+    background-color: rgb(12, 23, 51);
+} */
+
+#bar{
+    border-radius: 50px;
+    text-align: center;
+    padding: 15px;
+}
+#userPic{
+    width: 75px;
+    height: 75px;
+    border-radius: 75px;
+}
+/* media query responsiveness  */
+
+@media only screen and (max-width: 768px) {
+  body {
+    /* width: 768px; */
+    overflow-x: hidden;
+    }
+  .section{
+    display: flex;
+    flex-direction: column;
+    
+    width: auto;
+  }
+  .box{
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+<main id="main-page">
+    <%- include ('../includes/navbar.ejs') %>
+   
+    <section class="section">
+        <div class="box">
+            <img src="<%= User.picture %>" id="userPic" alt="user picture">
+        </div>
+
+        <div class="box">
+                <h5>Your Profile is <%= Percent %>%</h5>
+                <div id="bar" class="progress-bar-striped progress-bar-animated bg-danger mx-2" style='width:<%=Percent%>%'><%= Percent %> %</div>
+        </div>
+     
+       
+        <div class="box">
+            <% if(!isLoggedIn){ %>
+                Welcome <span>User</span>
+        <%    }  
+        else{  %>
+            Welcome <span><%=User.name %></span>
+     <%   } %>
+          
+        </div>
+    </section>   
+    <section class="section">
+        <div class="box">
+            <form action="" method="post">
+               
+                    <div>
+                        <input type="text" value="" disabled name="category">
+                    </div>
+                    <div>
+                        <input type="text" value="" disabled name="amount">
+                    </div>
+                    <div>
+                         <input type="text" value="" disabled name="duration">
+                    </div>
+                    <button>Get Loan</button>
+               
+                
+            </form>
+        </div>
+
+        <div class="box">
+              
+        </div>
+     
+       
+        <div class="box">
+       
+        </div>
+    </section> 
+</main>
+
+<%- include ('../includes/footer.ejs') %>
+</body>
+</html>

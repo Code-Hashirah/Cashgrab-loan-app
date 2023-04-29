@@ -42,7 +42,7 @@ const users=sequelize.define("users",{
         allowNull:true
     },
     appointmentLetter:{
-        type:DataTypes.STRING,
+        type:DataTypes.STRING(150),
         allowNull:true
     },
     salary:{
@@ -54,6 +54,14 @@ const users=sequelize.define("users",{
         allowNull:false
     },
     address:{
+        type:DataTypes.STRING(150),
+        allowNull:true
+    },
+    role:{
+        type:DataTypes.TEXT,
+        allowNull:true
+    },
+    idCard:{
         type:DataTypes.STRING(150),
         allowNull:true
     }

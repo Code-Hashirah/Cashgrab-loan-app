@@ -5,5 +5,6 @@ const {check}=require('express-validator')
 
 router.get('/', userController.homePage)
 
+router.get('/user-dashboard',userController.dashboardPage)
 
 module.exports=router;

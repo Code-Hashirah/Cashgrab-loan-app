@@ -10,8 +10,9 @@
     main{
         display: flexbox;
         background-image: url('/images/backgroundImg.jpg');
+        background-position: center;
         color: white;
-        height: 600px;
+        /* height: 600px; */
         display: flexbox;
         max-width: 100%;
         object-fit: cover;
@@ -21,7 +22,7 @@
         /* margin: 20px 10px 20px 10px; */
         margin: auto;
         width: 80%;
-        padding-bottom: 20px;
+        padding-bottom: 5px;
      display: flex;
      flex-direction: column;
      justify-content: center;
@@ -36,10 +37,11 @@
         box-shadow: inset;
         opacity: 50%;
         display: flexbox;
-        height: 80%;
+        padding: 5px;
+        /* height: 80%; */
     }
 
-#Email{
+.Email{
     width: 100%;
     border: none;
     border-radius: 9px;
@@ -61,7 +63,7 @@ label{
     font-size: 20px;
     /* margin-bottom: 50px; */
 }
-#Email:hover{
+.Email:hover{
     border-bottom: 2px solid white;
     box-shadow: 3px, 3px, 4px, white;
    
@@ -71,25 +73,22 @@ label{
     box-shadow: 3px, 9px, 14px, white;
 }
 .btn{
-    /* display: flex; */
     width: 70%;
     height: 30px;
-    /* margin: 50px 20px 50px 60px; */
-    /* justify-self: center; */
     border-radius: 10px;
     font-size: medium;
     font-weight: 500px;
 }
 .btn:hover{
-    background-color:rgb(4, 4, 13);
-    color: white;
+    background-color: rgb(12, 23, 51);
+    color: rgb(207, 15, 15);
 }
 @media only screen and(max-width:768px){
     form{
         margin: auto;
         width:100%;
        
-        height: 80%;
+        /* height: 80%; */
     }
     main{
         height: fit-content;
@@ -100,25 +99,43 @@ label{
 
 <body>
     <main>
-        <h1>Cash Grab</h1>
-        <form action="/sign-up" method="post" class="text-danger">
-            <h4>Sign Up</h4>
+        <h1>Cash Grab Admin</h1>
+        <form action="/admin-sign-up" method="post" class="text-danger" enctype="multipart/form-data">
+            <h4>Admin:Sign Up</h4>
             <div class="input-box">
-                <label for="Email">Email</label><br>
-                <input type="text" name="Email" id="Email" placeholder="Enter email">
-            </div>
-    
-            <div class="input-box">
-                <label for="">Password</label> <br>
-                <input type="password" name="Password" class="Password"  placeholder="Enter password">
+                <label for="Name">Name</label><br>
+                <input type="text" name="Name" id="Name" class="Email" placeholder="Enter name...">
             </div>
 
             <div class="input-box">
-                <label for="">Confirm Password</label> <br>
-                <input type="password" name="Password" class="Password"  placeholder="Confirm password">
+                <label for="Email">Email</label><br>
+                <input type="text" name="Email" id="Email" class="Email" placeholder="Enter email">
             </div>
+            
+            <div class="input-box">
+                <label for="Phone">Phone Number</label><br>
+                <input type="tel" name="Phone" id="Phone" class="Email" placeholder="Enter phone number">
+            </div>
+
+            <div class="input-box">
+                <label for="Email">Password</label> <br>
+                <input type="password" name="Password" id="Password" class="Password"  placeholder="Enter password">
+            </div>
+            
+            <div class="input-box">
+                <label for="ID">ID Card</label><br>
+                <input type="file" name="ID" id="ID" class="Email" placeholder="Nationaal ID-card, Intl Passport ..." accept="application/vnd">
+            </div>
+
+            
+            <div class="input-box">
+                <label for="Picture">Passport</label><br>
+                <input type="file" name="Picture" id="Picture" class="Email" placeholder="Nationaal ID-card, Intl Passport ...">
+            </div>
+
+            
     <div class="input-box">
-        <button type="submit" class="btn btn-light">Sign Up</button>
+        <button type="submit" class="btn btn-light">Add Admin</button>
     </div>
           
         </form>

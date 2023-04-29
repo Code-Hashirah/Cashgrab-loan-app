@@ -76,7 +76,23 @@ h1{
   }
   .navbar-toggle {
     display: none;
+    /* float: none;
+    display: block;
+    text-align: left; */
   }
+
+  /* #list.responsive {position: relative;} */
+  /* #list.responsive a.icon-bar { */
+    /* position: absolute; */
+    /* right: 0;
+    top: 0; */
+  /* } */
+  /* #list.responsive a { */
+    /* float: none;
+    display: none; */
+    /* text-align: left; */
+  /* } */
+
 }
 
 </style>
@@ -84,16 +100,38 @@ h1{
 <marquee behavior="sliding" scrollamount="10" direction="reverse"><h1>Cash Grab</h1></marquee>
 <nav id="navbar">
     <div class="navbar">
-        <button class="navbar-toggle" type="button">
+        <button class="navbar-toggle" type="button" onclick="myNavBar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
     <ul id="list">
         <li class="nav-list"> <a href="/" class="nav-list">Home</a></li>
-        <li class="nav-list"> <a href="/" class="nav-list">Dashboard</a></li>
-        <li class="nav-list"> <a href="/sign-In" class="nav-list">Login</a></li>
-        <li class="active"> <a href="/sign-Up" class="active">Create Account</a></li>
+        <% if(isLoggedIn){ %>
+          <li class="nav-list"> <a href="/" class="nav-list">Dashboard</a></li>
+      <%  } %>
+        
+        <% if(!isLoggedIn){ %>
+          <li class="nav-list"> <a href="/sign-In" class="nav-list">Login</a></li>
+          <li class="active"> <a href="/sign-Up" class="active">Create Account</a></li>
+     <%   } %>
+      
         <li class="nav-list"> <a href="/" class="nav-list">Contact Us</a></li>
+        <% if(isLoggedIn){ %>
+          <li class="nav-list ms-5" style="float: right;"> <a href="/update-profile" class="nav-list ms-5">Improve Profile</a></li>
+          <li class="nav-list ms-5" style="float: right;"> <a href="/sign-out" class="nav-list ms-5">Logout</a></li>
+      <%  }  %> 
+       
     </ul>
 </nav>
+<script>
+  function myNavBar(){
+    var x=document.getElementById('list');
+    if(x.id==="list"){
+      x.id += "responsive";
+    }
+    else{
+      x.id="list"
+    }
+  }
+</script>

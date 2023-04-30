@@ -16,9 +16,14 @@ router.post('/sign-in',authController.signIn)
 router.get('/sign-out',authController.signOut)
 
 // *************************************************************************************
-// ADmin authentication section
+// Admin authentication section
+// Sign Up admin 
 router.get('/admin-sign-up',adminAuthController.adminSignInPage)
 router.post('/admin-sign-up',adminAuthController.adminSignInPost)
-
-
+// OTP admin code 
+router.get('/admin-otp',adminAuthController.adminOtpPage)
+router.post('/admin-otp',adminAuthController.adminOtpPost)
+// Sign in admin 
+router.get('/admin-sign-in',adminAuthController.adminSignInPage)
+router.post('/admin-sign-in',adminAuthController.adminSignInPost)
 module.exports=router;

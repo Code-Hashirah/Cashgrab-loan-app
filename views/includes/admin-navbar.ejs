@@ -1,0 +1,64 @@
+
+
+<!-- Offcanvas Sidebar -->
+
+   <div class="offcanvas offcanvas-start text-bg-dark" id="demo1">
+    <div class="offcanvas-header">
+      <h1 class="offcanvas-title">Cash Grab Admin</h1>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>     
+    </div>
+    <div class="offcanvas-body">
+     
+                <ul class="nav justify-content-center flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link btn btn-outline-danger w-75" href="/admin-dashboard">Home <i class="fas fa-home"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link btn btn-outline-danger w-75" href="/admin-add-loan">Add Loans <i class="fas fa-cash-register"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link btn btn-outline-danger w-75" href="/admin-sign-in">Login <i class="fas fa-sign-in"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link btn btn-outline-danger w-75" href="/admin-sign-up">Add Admin <i class="fas fa-sign-in-alt"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link btn btn-outline-danger w-75" href="/admin-sign-out">Logout <i class="fas fa-sign-out"></i></a>
+                  </li>
+                </ul>
+    </div>
+    </div>
+  
+  
+  <div class="container-fluid mt-3">
+    <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo1">
+      <span class="fa-solid fa-hamburger"></span>
+    </button>
+  </div>
+
+  <div class="">
+    <h3 id="banner">Admin <%= Admin.name %></h3>
+    
+  </div>
+
+  
+  
+<style>
+    #banner{
+        text-align: center;
+        color: rgb(230, 10, 47);
+        font-size:xx-large;
+    }
+   
+
+.nav-item a{
+    color: white;
+  }
+
+  .nav-item a:hover{
+    color: white;
+  }
+  </style>
+  
+
+

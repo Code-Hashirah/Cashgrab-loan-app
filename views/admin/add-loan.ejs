@@ -1,0 +1,152 @@
+<%- include('../includes/admin-header.ejs') %>
+<style>
+    body{
+        /* background-image: url('/images/backgroundImg.jpg'); */
+        background-color:rgb(12, 23, 51) ;
+    }
+    h1,h4{
+        text-align: center;
+    }
+    main{
+        display: flexbox;
+        background-image: url('/images/backgroundImg.jpg');
+        background-position: center;
+        color: white;
+        /* height: 600px; */
+        display: flexbox;
+        max-width: 100%;
+        object-fit: cover;
+
+    }
+    .input-box{
+        /* margin: 20px 10px 20px 10px; */
+        margin: auto;
+        width: 80%;
+        padding-bottom: 5px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+    }
+    form{
+        margin: auto;
+        width:40%;
+        border: 2px solid white;
+        color: white;
+        background-color: rgb(12, 23, 51);
+        border-radius: 30px;
+        box-shadow: inset;
+        opacity: 50%;
+        display: flexbox;
+        padding: 5px;
+        /* height: 80%; */
+    }
+
+.Email{
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    height: 40px;
+    background-color: rgb(2, 6, 16);
+    color: white;
+}
+.Password{
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    height: 40px;
+    background-color: rgb(2, 6, 16);
+    color: white;
+}
+label{
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    /* margin-bottom: 50px; */
+}
+.Email:hover{
+    border-bottom: 2px solid white;
+    box-shadow: 3px, 3px, 4px, white;
+   
+}
+.Password:hover{
+    border-bottom: 2px solid white;
+    box-shadow: 3px, 9px, 14px, white;
+}
+.btns{
+    width: 70%;
+    height: 30px;
+    border-radius: 10px;
+    font-size: medium;
+    font-weight: 500px;
+}
+.btns:hover{
+    background-color: rgb(12, 23, 51);
+    color: rgb(207, 15, 15);
+}
+@media only screen and(max-width:768px){
+    form{
+        margin: auto;
+        width:100%;
+       
+        /* height: 80%; */
+    }
+    main{
+        height: fit-content;
+        /* height: 100%; */
+    }
+}
+</style>
+
+<body>
+    <%- include('../includes/admin-navbar.ejs') %>
+    <main>
+        <form id="form" class="text-danger" enctype="multipart/form-data">
+            <h4>Admin:Add Loans</h4>
+            <div class="input-box">
+                <label for="Type">Type</label><br>
+                <input type="text" name="Type" id="Type" class="Email" placeholder="Enter name...">
+            </div>
+
+            <div class="input-box">
+                <label for="Email">Duration</label><br>
+                <input type="text" name="Duration" id="Duration" class="Email" placeholder="Enter email">
+            </div>
+            
+            <div class="input-box">
+                <label for="Amount">Amount</label><br>
+                <input type="number" name="Amount" id="Amount" class="Email" placeholder="Enter Amount number">
+            </div>
+
+            
+    <div class="input-box">
+        <button type="submit" class="btns btn-light">Add Loan</button>
+    </div>
+          
+        </form>
+    </main>    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+ 
+        form.addEventListener('submit',send)
+        function send(e){
+          e.preventDefault();
+         
+          let form=document.getElementById('form').value;
+        let Type=document.getElementById('Type').value;
+        let Duration=document.getElementById('Duration').value;
+        let Amount=document.getElementById('Amount').value;
+       
+        let formData=new FormData()
+          formData.append('Type', Type)
+          formData.append('Duration', Duration)
+          formData.append('Amount', Amount)
+          axios.post('/admin-add-loan',formData)
+          .then(response=>{
+            console.log(response)
+          })
+        }
+      
+       </script>
+    <%- include('../includes/admin-footer.ejs') %>
+</body>
+</html>

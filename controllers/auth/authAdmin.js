@@ -64,7 +64,7 @@ exports.adminSignInPost=(req,res)=>{
         }).catch(err=>{
             console.log(err)
         })
-        res.redirect('/otp')
+        res.redirect('/admin-otp')
     }).catch(err=>{
         console.log(err)
     })
@@ -73,4 +73,52 @@ exports.adminSignInPost=(req,res)=>{
     .catch(err=>{
         console.log(err)
     })
+} 
+// OTP codes 
+exports.adminOtpPage=(req,res)=>{
+    res.render('admin/OTP',{title:"Admin::OTP page"})
+}
+
+exports.adminOtpPost=(req,res)=>{
+    const {OTP}=req.body;
+    Users.findOne({where:{
+        otp:OTP
+    }}).then(confirmed=>{
+        req.session.isLoggedIn=true;
+        req.session.user=confirmed;
+        res.redirect('/admin-dashboard')
+    }).catch(err=>{
+        console.log(err)
+    })
+}
+
+// Sign in code 
+exports.adminSignInPage=(req,res)=>{
+  
+    res.render('admin/login.ejs', {title:"Admin::Cash Grab Sign-In"})
+   
+}
+
+exports.adminSignInPost=(req,res)=>{
+    const {Email, Password}=req.body
+    Users.findOne({where:{
+        email:Email
+    }}).then(userDetails=>{
+        bcrypt.compare(Password,userDetails.password).then(verifiedUser=>{
+            if(!verifiedUser){
+                res.redirect('/admin-sign-in')
+            }
+            req.session.isLoggedIn=true;
+            req.session.user=userDetails
+            return req.session.save(()=>{
+                res.redirect('/admin-dashboard')
+            })
+        })
+    })
+}
+// Sign out code 
+exports.adminSignOut=(req,res)=>{
+    req.session.destroy(()=>{
+      return   res.redirect('/admin-sign-in')
+    }) 
 }

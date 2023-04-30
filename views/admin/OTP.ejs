@@ -1,4 +1,4 @@
-<%- include('../includes/header.ejs') %>
+<%- include('../includes/admin-header.ejs') %>
 <style>
     body{
         /* background-image: url('/images/backgroundImg.jpg'); */
@@ -75,8 +75,8 @@ label{
 <body>
     <main>
         <h1>Cash Grab</h1>
-        <form action="/otp" method="post">
-            <h4>Enter OTP</h4>
+        <form action="/admin-otp" method="post">
+            <h4>Admin::Enter OTP</h4>
             <div class="input-box">
                 <label for="Email">OTP</label>
                 <input type="tel" name="OTP" id="Email">
@@ -90,6 +90,6 @@ label{
         </form>
        
     </main>
-    <%- include('../includes/footer.ejs') %>
+    <%- include('../includes/admin-footer.ejs') %>
 </body>
 </html>

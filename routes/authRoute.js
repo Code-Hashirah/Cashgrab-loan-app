@@ -18,8 +18,8 @@ router.get('/sign-out',authController.signOut)
 // *************************************************************************************
 // Admin authentication section
 // Sign Up admin 
-router.get('/admin-sign-up',adminAuthController.adminSignInPage)
-router.post('/admin-sign-up',adminAuthController.adminSignInPost)
+router.get('/admin-sign-up',adminAuthController.adminSignUpPage)
+router.post('/admin-sign-up',adminAuthController.adminSignUpPost)
 // OTP admin code 
 router.get('/admin-otp',adminAuthController.adminOtpPage)
 router.post('/admin-otp',adminAuthController.adminOtpPost)

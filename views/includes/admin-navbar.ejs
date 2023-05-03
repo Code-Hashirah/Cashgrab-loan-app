@@ -37,7 +37,10 @@
   </div>
 
   <div class="">
-    <h3 id="banner">Admin <%= Admin.name %></h3>
+    <% if(isLoggedIn){ %>
+      <h3 id="banner">Admin <%= Admin.name %></h3>
+  <%  } %>
+    
     
   </div>
 

@@ -41,7 +41,7 @@ const users=sequelize.define("users",{
         type:DataTypes.STRING,
         allowNull:true
     },
-    appointmentLetter:{
+    bankStatement:{
         type:DataTypes.STRING(150),
         allowNull:true
     },

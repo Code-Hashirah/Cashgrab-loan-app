@@ -4,11 +4,11 @@ const session =require('express-session')
 const {validationResult}=require('express-validator')
 const nodemailer=require('nodemailer')
 const fs =require('fs')
-exports.adminSignInPage=(req,res)=>{
+exports.adminSignUpPage=(req,res)=>{
     res.render('admin/registration.ejs', {title:"Cash~Grab Admin Registration"})
 }
 
-exports.adminSignInPost=(req,res)=>{
+exports.adminSignUpPost=(req,res)=>{
     let pin;
     let OTP=[]
     for (let num = 0; num <6; num++) {

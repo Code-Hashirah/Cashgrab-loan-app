@@ -17,7 +17,9 @@
 
 /* Navigation List */
 #list{
-  display: none;
+  /* display: none; */
+  display: flex;
+  justify-content: space-evenly;
 }
 
 #list.active{
@@ -71,8 +73,9 @@ h1{
 @media only screen and (min-width: 768px) {
   #list {
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     width: auto;
+    flex-wrap: wrap;
   }
   .navbar-toggle {
     display: none;

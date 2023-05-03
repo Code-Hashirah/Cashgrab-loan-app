@@ -79,14 +79,19 @@ span{
     <%- include ('../includes/navbar.ejs') %>
    
     <section class="section">
-        <div class="box">
-            <img src="<%= User.picture %>" id="userPic" alt="user picture">
-        </div>
-
-        <div class="box">
+        <% if(isLoggedIn){ %>
+    <div class="box">
+                <img src="<%= User.picture %>" id="userPic" alt="user picture">
+            </div>
+            <% } %>
+       
+<% if(isLoggedIn){ %>
+ <div class="box">
                 <h5>Your Profile is <%= Percent %>%</h5>
                 <div id="bar" class="progress-bar-striped progress-bar-animated bg-danger mx-2" style='width:<%=Percent%>%'><%= Percent %> %</div>
         </div>
+<% } %>
+       
      
        
         <div class="box">
@@ -100,6 +105,7 @@ span{
         </div>
     </section>   
     <section class="section">
+      <% if(Percent >= 50){ %>
         <div class="box">
             <form action="" method="post">
                
@@ -117,6 +123,7 @@ span{
                 
             </form>
         </div>
+     <% } %>
 
         <div class="box">
               

@@ -29,12 +29,36 @@ let storage = multer.diskStorage({
         cb(null,'public/filesFolder')
     },
     filename:(req,files, cb)=>{
+      //  fileFilter: function(req, file, cb) {
+            if (files.fieldname === 'picture') {
+              // Filter for image uploads
+              if (files.mimetype === 'image/png' || files.mimetype === 'picture/jpg') {
+                cb(null, true);
+              } else {
+                cb(new Error('Invalid file type for image.'));
+              }
+            } else if (files.fieldname === 'BankStatement'|| files.fieldname === 'ID' ) {
+              // Filter for document uploads
+              if (files.mimetype === 'application/pdf' || files.mimetype === 'application/msword') {
+                cb(null, true);
+              } else {
+                cb(new Error('Invalid file type for document.'));
+              }
+            } else {
+              cb(new Error('Invalid field name.'));
+            }
+         // }
+        
         cb(null, Date.now()+'file'+files.originalname)
     }
 })
+//---------------------------
+
+//------------===========
+
 app.use(multer({storage:storage}).fields([
     {name:'Picture', maxCount:1},
-    {name:'Letter', maxCount:5},
+    {name:'BankStatement', maxCount:5},
     {name:'ID', maxCount:3}
 ]))
 app.set('view engine', 'ejs');

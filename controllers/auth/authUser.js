@@ -87,6 +87,9 @@ exports.signIn=(req,res)=>{
     Users.findOne({where:{
         email:Email
     }}).then(userDetails=>{
+        if(!userDetails){
+        res.redirect('/sign-in')
+        }
         bcrypt.compare(Password,userDetails.password).then(verifiedUser=>{
             if(!verifiedUser){
                 res.redirect('/sign-in')

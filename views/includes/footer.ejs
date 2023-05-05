@@ -2,15 +2,18 @@
 <%- include ('header.ejs') %>
 <style>
     img{
-        width: 100%;
+        max-width: 100%;
         height: 50px;
     }
     div{
         margin-top: 10px;
     }
+    ul{
+        display:flex;
+        justify-content:space-evenly;
+    }
     .list{
         list-style-type: none;
-        display:inline;
     }
     @media only screen and (max-width:768px) {
         footer{
@@ -21,11 +24,11 @@
 </head>
 <footer>
     <ul>
-        <li class="list"> <span class="fa-solid fa-whatsapp"></span> </li>
-        <li class="list"> <span class="fa-solid fa-linkedin"></span> </li>
-        <li class="list"> <span class="fa-solid fa-facebook"></span> </li>
-        <li class="list"> <span class="fa-solid fa-twitter"></span> </li>
-        <li class="list"> <span class="fa-solid fa-youtube"></span> </li>
+        <li class="list"> <a href="https://wa.me/2349053109638"><span class="fab fa-whatsapp"></span></a> </li>
+        <li class="list"> <a href="https://"><span class="fab fa-linkedin"></span></a> </li>
+        <li class="list"> <a href="https://"><span class="fab fa-facebook"></span></a> </li>
+        <li class="list"> <a href="https://"><span class="fab fa-twitter"></span> </a></li>
+        <li class="list"> <a href="https://"><span class="fab fa-youtube"></span> </a></li>
     </ul>
     <div>
         <img src="/images/footerImg.png" alt="footer">

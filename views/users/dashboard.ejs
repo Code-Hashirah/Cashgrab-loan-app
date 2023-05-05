@@ -4,6 +4,8 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        font-family:Rubik_Gemstones;
+        /* font-family: DancingScript; */
     }
     body{
         background-color: rgb(12, 23, 51);
@@ -80,14 +82,14 @@ span{
    
     <section class="section">
         <% if(isLoggedIn){ %>
-    <div class="box">
-                <img src="<%= User.picture %>" id="userPic" alt="user picture">
+        <div class="box">
+                <img src="<%=User.picture %>" id="userPic" alt="user picture">
             </div>
             <% } %>
        
 <% if(isLoggedIn){ %>
  <div class="box">
-                <h5>Your Profile is <%= Percent %>%</h5>
+                <h5>Your Profile is <%= Percent %>% <i>Complete</i></h5>
                 <div id="bar" class="progress-bar-striped progress-bar-animated bg-danger mx-2" style='width:<%=Percent%>%'><%= Percent %> %</div>
         </div>
 <% } %>
@@ -99,13 +101,13 @@ span{
                 Welcome <span>User</span>
         <%    }  
         else{  %>
-            Welcome <span><%=User.name %></span>
+         <p>Welcome  <span style="font-family: Rubik_Gemstones; padding: 3px;"><%=User.name %></span> </p>
      <%   } %>
           
         </div>
     </section>   
     <section class="section">
-      <% if(Percent >= 50){ %>
+      <% if(Percent >= 70){ %>
         <div class="box">
             <form action="" method="post">
                

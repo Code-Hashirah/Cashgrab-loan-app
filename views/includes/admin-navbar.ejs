@@ -41,6 +41,11 @@
       <h3 id="banner">Admin <%= Admin.name %></h3>
   <%  } %>
     
+  <div class="">
+    <% if(isLoggedIn){ %>
+   <img src="<%= Admin.picture %>" alt="">
+  <%  } %>
+    
     
   </div>
 

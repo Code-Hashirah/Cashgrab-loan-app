@@ -1,0 +1,43 @@
+<%- include('../includes/admin-header.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/admin-navbar.ejs') %>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Loan Type</th>
+              <th scope="col">Duartion</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+<% if(!Loans){ %>
+    <h1>No loans added yet</h1>
+  <%  }        
+  else{  %>
+    <% for(let loan of Loans){ %>
+        <tr>
+            <th scope="row"><%= loan.id %></th>
+            <td><%= loan.loanType %></td>
+            <td><%= loan.duration %></td>
+            <td><%= loan.amount %></td>
+            <td> <form action="/admin-update-loan/:loan.id" method="post">
+              <input type="hidden" value="<%=loan.id %>">
+              <button class="btn btn-warning"><i class="fas fa-edit">Edit</i></button>
+            </form><br>
+             <a class="btn btn-danger" href="/admin-delete-loan"> <i class="fas fa-delete-left"></i>Delete</a></td>
+          </tr>
+     <%  } %>
+
+ <% }
+  %>
+          </tbody>
+      </table>
+  
+    <%- include('../includes/admin-footer.ejs') %>
+</body>
+
+</html>

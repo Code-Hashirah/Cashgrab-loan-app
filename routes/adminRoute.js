@@ -10,4 +10,5 @@ router.post('/admin-add-loan',[
     check('Amount').notEmpty().withMessage('This field is required')
 ],adminController.adminAddLoanPost)
 
+router.get('/admin-manage-loans',adminController.adminManageLoans)
 module.exports=router;

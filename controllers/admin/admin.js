@@ -33,3 +33,49 @@ exports.adminManageLoans=(req, res)=>{
         res.render('admin/manage-loans.ejs', {title:"Manage Loans", Loans:loans})
     })
 }
+
+exports.adminDeleteLoan=(req,res)=>{
+    const {Id}=req.body;
+    Loans.findOne({where:{
+        id:Id
+    }}).then(loanData=>{
+        return loanData.destroy()
+    }).then(deleted=>{
+        req.session.save(()=>{
+            res.redirect('/admin-manage-loans')
+        })
+    })
+}
+
+exports.adminUpdateLoandPage=(req,res)=>{
+    let error=req.flash('productErr');
+    let success = req.flash('success');
+    let adminData=req.session.user;
+    let Id = req.params.id;
+    Loans.findOne({where:{
+        id:Id
+    }}).then(loan=>{
+        res.render('admin/update-loan.ejs', {title:"Update Loan", Loan:loan, Admin:adminData,error:error, success:success})
+    })
+}
+
+exports.adminUpdateLoanPost= async (req,res)=>{
+    try {
+        const { id, Type, Duration, Amount } = req.body
+
+        // Retrieve the record by its ID
+        const loan = await Loans.findByPk(id)
+
+        // Update the fields with the new values
+        loan.Type = Type
+        loan.Duration = Duration
+        loan.Amount = Amount
+
+        // Save the changes to the database
+        await loan.save()
+
+        res.json({ success: true })
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to update loan record' })
+    }
+}

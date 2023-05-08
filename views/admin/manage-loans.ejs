@@ -23,12 +23,14 @@
             <th scope="row"><%= loan.id %></th>
             <td><%= loan.loanType %></td>
             <td><%= loan.duration %></td>
-            <td><%= loan.amount %></td>
-            <td> <form action="/admin-update-loan/:loan.id" method="post">
-              <input type="hidden" value="<%=loan.id %>">
-              <button class="btn btn-warning"><i class="fas fa-edit">Edit</i></button>
-            </form><br>
-             <a class="btn btn-danger" href="/admin-delete-loan"> <i class="fas fa-delete-left"></i>Delete</a></td>
+            <td>₦<%= loan.amount %></td>
+            <td> 
+              <a class="btn btn-success py-1" href="/admin-update-loan/<%=loan.id%>"> <i class="fas fa-pencil"></i>Update</a>
+              <form action="/admin-delete-loan" method="post">
+              <input type="hidden" value="<%=loan.id %>" name="Id">
+              <button class="btn btn-danger  py-1"><i class="fas fa-trash-can"></i>Remove</button>
+            </td>
+            </form>
           </tr>
      <%  } %>
 

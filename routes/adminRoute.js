@@ -11,4 +11,8 @@ router.post('/admin-add-loan',[
 ],adminController.adminAddLoanPost)
 
 router.get('/admin-manage-loans',adminController.adminManageLoans)
+router.post('/admin-delete-loan',adminController.adminDeleteLoan)
+
+router.get('/admin-update-loan/:id',adminController.adminUpdateLoandPage)
+router.post('/admin-update-loan',adminController.adminUpdateLoanPost)
 module.exports=router;

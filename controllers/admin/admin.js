@@ -59,23 +59,34 @@ exports.adminUpdateLoandPage=(req,res)=>{
     })
 }
 
-exports.adminUpdateLoanPost= async (req,res)=>{
-    try {
-        const { id, Type, Duration, Amount } = req.body
+exports.adminUpdateLoanPost=(req,res)=>{
+    // exports.adminUpdateLoanPost= async (req,res)=>{
+    // try {
+    //     const { id, Type, Duration, Amount } = req.body
+    //     // Retrieve the record by its ID
+    //     const loan = await Loans.findByPk(id)
+    //     // Update the fields with the new values
+    //     loan.loanType = Type
+    //     loan.duration = Duration
+    //     loan.amount = Amount
+    //     // Save the changes to the database
+    //     await loan.save()
 
-        // Retrieve the record by its ID
-        const loan = await Loans.findByPk(id)
-
-        // Update the fields with the new values
-        loan.Type = Type
-        loan.Duration = Duration
-        loan.Amount = Amount
-
-        // Save the changes to the database
-        await loan.save()
-
-        res.json({ success: true })
-    } catch (err) {
-        res.status(500).json({ error: 'Failed to update loan record' })
-    }
+    //     res.json({ success: true })
+    // } catch (err) {
+    //     res.status(500).json({ error: 'Failed to update loan record' })
+    // }
+    const { id, Type, Duration, Amount } = req.body
+    Loans.findOne({where:{
+        id:id
+    }}).then(loan=>{
+        loan.loanType = Type
+       loan.duration = Duration
+        loan.amount = Amount
+        return loan.save()
+    }).then(changed=>{
+        req.session.save(()=>{
+            res.redirect('/admin-manage-loans')
+        })
+    })
 }

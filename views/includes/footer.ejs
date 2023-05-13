@@ -2,8 +2,12 @@
 <%- include ('header.ejs') %>
 <style>
     img{
-        max-width: 100%;
+        margin-top: 30px;
+        width: 100%;
         height: 50px;
+    }
+    .icon{
+        color: white
     }
     div{
         margin-top: 10px;
@@ -19,19 +23,23 @@
         footer{
             max-width: 768px;
         }
+        img{
+        margin-top: 10px;
+        width: 100%;
+    }
     }
 </style>
 </head>
 <footer>
     <ul id="ul">
-        <li class="list"> <a href="https://wa.me/2349053109638"><span class="fab fa-whatsapp"></span></a> </li>
-        <li class="list"> <a href="https://"><span class="fab fa-linkedin"></span></a> </li>
-        <li class="list"> <a href="https://"><span class="fab fa-facebook"></span></a> </li>
-        <li class="list"> <a href="https://"><span class="fab fa-twitter"></span> </a></li>
-        <li class="list"> <a href="https://"><span class="fab fa-youtube"></span> </a></li>
+        <li class="list"> <a href="https://wa.me/2349053109638"><span class="icon fab fa-whatsapp"></span></a> </li>
+        <li class="list"> <a href="https://"><span class="icon fab fa-linkedin"></span></a> </li>
+        <li class="list"> <a href="https://"><span class="icon fab fa-facebook"></span></a> </li>
+        <li class="list"> <a href="https://"><span class="icon fab fa-twitter"></span> </a></li>
+        <li class="list"> <a href="https://"><span class="icon fab fa-youtube"></span> </a></li>
     </ul>
     <div>
         <img src="/images/footerImg.png" alt="footer">
     </div>
 </footer>
-<script src="/bootstrap/boostrap/min.js"></script>
+<script src="/bootstrap/boostrap.bundle.min.js"></script>

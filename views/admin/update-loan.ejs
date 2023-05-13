@@ -102,9 +102,9 @@ label{
     <main>
         <div id="error"><%= JSON.stringify(error)%></div>
         <div id="success"></div>
-        <form id="form" class="text-danger" enctype="multipart/form-data">
+        <form id="form" class="text-danger" enctype="multipart/form-data" action="/admin-update-loans" method="post">
             <h4>Admin:Add Loans</h4>
-            <input type="hidden" value="<%= Loan.id %>" name="id">
+            <input type="hidden" value="<%= Loan.id %>" name="id" id="id">
             <div class="input-box">
                 <label for="Type">Type</label><br>
                 <input type="text" name="Type" id="Type" value="<%= Loan.loanType %>" class="Email" placeholder="Enter name...">
@@ -126,15 +126,15 @@ label{
           
         </form>
     </main>    
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         let form=document.getElementById('form')
         form.addEventListener('submit',send)
-        let loadStatus=document.getElementById('submit')
-        function send(e){
+         let loadStatus=document.getElementById('submit')
+          function send(e){
             e.preventDefault();
             loadStatus.value="Loading..."
-    
+            let id=document.getElementById('id').value;
             let Type=document.getElementById('Type').value;
             let Duration=document.getElementById('Duration').value;
             let Amount=document.getElementById('Amount').value;
@@ -168,10 +168,10 @@ label{
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <strong>Oops!</strong> An error occurred while submitting the product.
-                    </div>`;
+                    </div>`; 
                 });
         }
-    </script>
+    </script> -->
     
     <%- include('../includes/admin-footer.ejs') %>
 </body>

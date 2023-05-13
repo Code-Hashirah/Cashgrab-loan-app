@@ -103,7 +103,7 @@ label{
         <div id="error"><%= JSON.stringify(error)%></div>
         <div id="success"></div>
         <form id="form" class="text-danger" enctype="multipart/form-data">
-            <h4>Admin:Add Loans</h4>
+            <h4>Admin:Update Loans</h4>
             
             <div class="input-box">
                 <label for="Type">Type</label><br>
@@ -157,7 +157,7 @@ label{
                         }, 3000);
                     }
                 })
-                .catch(error => {
+                .catch(error => {zxc   
                     console.log(error);
                     loadStatus.value="Submit";
                     document.getElementById('error').innerHTML = `

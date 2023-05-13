@@ -7,12 +7,12 @@
         font-family:Rubik_Gemstones;
         /* font-family: DancingScript; */
     }
-    body{
-        background-color: rgb(12, 23, 51);
-    }
+   
  
     #main-page{
-        background-color: rgb(12, 23, 51);
+        /* background-color: rgb(12, 23, 51); */
+        color: rgb(12, 23, 51);
+       
 
     }
 .section{
@@ -32,14 +32,14 @@
     padding: 15px;
    
 }
-.box:hover{
+/* .box:hover{
   zoom: 1;
-}
+} */
 
 
 
 span{
-    color: fuchsia;
+    color: rgb(12, 23, 51);
     font-size: 25px;
     border: 5px;
 }
@@ -109,23 +109,34 @@ span{
     <section class="section">
       <% if(Percent >= 70){ %>
         <div class="box">
-            <form action="" method="post">
+            <% if(!Loans){  %>
+                <h2>No Loans Availabe </h2>
+        <%    } 
+        else{  
+            for(let loan of Loans) {  %>
+                <form action="/apply-loan" method="post">
                
                     <div>
-                        <input type="text" value="" disabled name="category">
+                        <input type="text" value="<%=loan.loanType %>" disabled name="category">
                     </div>
                     <div>
-                        <input type="text" value="" disabled name="amount">
+                        <input type="text" value="<%=loan.amount %>" disabled name="amount">
                     </div>
                     <div>
-                         <input type="text" value="" disabled name="duration">
+                         <input type="text" value="<%=loan.duration %>" disabled name="duration">
                     </div>
                     <button>Get Loan</button>
-               
-                
             </form>
+     <%    }
+       }
+        %>
+            
         </div>
-     <% } %>
+     <% }
+     else{  %>
+        <h2>Complete your Registration to be eligible for loans, click on the update Profile</h2>
+   <%  }
+     %>
 
         <div class="box">
               

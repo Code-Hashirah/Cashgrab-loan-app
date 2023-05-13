@@ -1,6 +1,7 @@
 const session = require('express-session')
 const User=require('../../models/users')
 const bcrypt=require('bcrypt')
+const Loans=require('../../models/loansAvailable')
 
 exports.homePage=(req, res)=>{
     res.render('index.ejs', {title:"Cash Grab Home"})
@@ -24,7 +25,10 @@ exports.dashboardPage=(req,res)=>{
     let complete ;
     complete=Math.ceil( count/total*100)
     console.log(complete+"%")    
-    res.render('users/dashboard.ejs',{title:"Cash Grab Dashboard", User:UserData, Percent:complete})
+    Loans.findAll().then(loans=>{
+         res.render('users/dashboard.ejs',{title:"Cash Grab Dashboard", User:UserData, Percent:complete, Loans:loans})
+    })
+   
    
 }
 
@@ -62,4 +66,8 @@ exports.updateProfilePost=(req,res)=>{
     }).catch(err=>{
         console.log(err)
     })
+}
+exports.applyLoan=(req,res)=>{
+    let dateApplied=Date.now();
+    const {Name,Id,Bvn,Account,Picture,}=req.body
 }

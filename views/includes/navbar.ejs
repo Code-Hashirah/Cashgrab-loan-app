@@ -91,40 +91,34 @@ h1{
 </style>
 </head>
 <!-- <marquee behavior="sliding" scrollamount="10" direction="reverse"><h1>Cash Grab</h1></marquee> -->
-<nav id="navbar">
-    <div class="navbar">
-        <button class="navbar-toggle" type="button" onclick="myNavBar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-    <ul id="list">
-        <li class="nav-list"> <a href="/" class="nav-list" id="Home">Home</a></li>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Cash Grab</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul id="list" class="navbar-nav text">
+        <li class="nav-item mx-5"> <a href="/" class="nav-link" id="Home">Home</a></li>
         <% if(isLoggedIn){ %>
-          <li class="nav-list"> <a href="/user-dashboard" class="nav-list" id="Dashboard">Dashboard</a></li>
+          <li class="nav-item mx-5"> <a href="/user-dashboard" class="nav-link" id="Dashboard">Dashboard</a></li>
       <%  } %>
         
         <% if(!isLoggedIn){ %>
-          <li class="nav-list"> <a href="/sign-In" class="nav-list" id="Login">Login</a></li>
-          <li class="active"> <a href="/sign-Up" class="active">Create Account</a></li>
+          <li class="nav-item mx-5"> <a href="/sign-In" class="nav-link" id="Login">Login</a></li>
+          <li class="nav-item mx-5"> <a href="/sign-Up" class="nav-link active">Create Account</a></li>
      <%   } %>
       
-        <li class="nav-list"> <a href="/" class="nav-list">Contact Us</a></li>
+        <li class="nav-item mx-5"> <a href="/" class="nav-link">Contact Us</a></li>
         <% if(isLoggedIn){ %>
-          <li class="nav-list ms-5" style="float: right;" id="Improve"> <a href="/update-profile" class="nav-list ms-5">Improve Profile</a></li>
-          <li class="nav-list ms-5" style="float: right;"> <a href="/sign-out" class="nav-list ms-5">Logout</a></li>
+          <li class="nav-item mx-5 "  id="Improve"> <a href="/update-profile" class="nav-link ">Improve Profile</a></li>
+          <li class="nav-item mx-5 "  id="Improve"> <a href="/pay-loan" class="nav-link ">Pay Loans</a></li>          
+          <li class="nav-item mx-5 " > <a href="/sign-out" class="nav-link ">Logout</a></li>
       <%  }  %> 
        
     </ul>
+    </div>
+  </div>
 </nav>
-<script>
-  function myNavBar(){
-    var x=document.getElementById('list');
-    if(x.id==="list"){
-      x.id += "responsive";
-    }
-    else{
-      x.id="list"
-    }
-  }
-</script>
+<script src="/bootstrap/bootstrap.bundle.min.js"></script>

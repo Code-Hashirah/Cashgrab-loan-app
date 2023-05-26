@@ -43,19 +43,21 @@
              background-color: transparent;
             outline: none;
         }
-.Password{
-    width: 100%;
-    border: none;
-   border-bottom: 1px solid black;
-   background-color: transparent;
-    outline: none;
-    height: 40px;
-    color: black;
-}
+        .Password{
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid black;
+            background-color: transparent;
+            outline: none;
+            /* height: 40px; */
+            color: black;
+        }
+
 label{
     color: black;
     text-align: left;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 
 
@@ -84,35 +86,35 @@ label{
     <main>
         <h1>Cash Grab Admin</h1>
         <form action="/admin-sign-up" method="post" class="text-danger" enctype="multipart/form-data">
-            <h4>Admin: Add</h4>
+            
             <div class="input-box">
-                <label for="Name">Name</label><br>
+                <label for="Name">Name</label>
                 <input type="text" name="Name" id="Name" class="Email" placeholder="Enter name...">
             </div>
 
             <div class="input-box">
-                <label for="Email">Email</label><br>
+                <label for="Email">Email</label>
                 <input type="text" name="Email" id="Email" class="Email" placeholder="Enter email">
             </div>
             
             <div class="input-box">
-                <label for="Phone">Phone Number</label><br>
+                <label for="Phone">Phone Number</label>
                 <input type="tel" name="Phone" id="Phone" class="Email" placeholder="Enter phone number">
             </div>
 
             <div class="input-box">
-                <label for="Email">Password</label> <br>
+                <label for="Email">Password</label> 
                 <input type="password" name="Password" id="Password" class="Password"  placeholder="Enter password">
             </div>
             
             <div class="input-box">
-                <label for="ID">ID Card</label><br>
+                <label for="ID">ID Card</label>
                 <input type="file" name="ID" id="ID" class="Email" placeholder="Nationaal ID-card, Intl Passport ..." accept="application/vnd">
             </div>
 
             
             <div class="input-box">
-                <label for="Picture">Passport</label><br>
+                <label for="Picture">Passport</label>
                 <input type="file" name="Picture" id="Picture" class="Email" placeholder="Nationaal ID-card, Intl Passport ...">
             </div>
 

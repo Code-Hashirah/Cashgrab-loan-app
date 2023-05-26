@@ -9,15 +9,15 @@ const loansTaken=sequelize.define('loansTaken',{
     },
     loanType:{
         type:DataTypes.TEXT,
-        allowNull:false
+        allowNull:true
     },
     duration:{
         type:DataTypes.STRING,
-        allowNull:false
+        allowNull:true
     },
     amount:{
         type:DataTypes.INTEGER,
-        allowNull:false
+        allowNull:true
     },
     phone:{
         type:DataTypes.STRING(11),
@@ -37,13 +37,15 @@ const loansTaken=sequelize.define('loansTaken',{
     },
     email:{
         type:DataTypes.STRING(35),
-        unique:true,
         allowNull:false
     },
     bvn:{
         type:DataTypes.INTEGER(14),
-        allowNull:true,
-        unique:true
+        allowNull:true
+    },
+    name:{
+        type:DataTypes.STRING(50),
+        allowNull:false
     }
 })
 

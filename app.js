@@ -20,8 +20,6 @@ const flash = require('connect-flash')
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({encoded:true}));
 app.use(bodyParser2.json())
-//  app.use(UserRoute)
-//  app.use(authRoute)
 
 
 let storage = multer.diskStorage({
@@ -81,6 +79,7 @@ app.use((req,res,next)=>{
 app.use(UserRoute)
  app.use(authRoute)
  app.use(adminRoute)
+//  loansTaken.sync({force:true})
 // Users.sync({alter:true})
 // Loans.sync({force:true})
 sequelize.sync().then(port=>{

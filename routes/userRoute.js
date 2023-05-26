@@ -8,4 +8,9 @@ router.get('/user-dashboard',userController.dashboardPage)
 
 router.get('/update-profile',userController.updateProfilePage)
 router.post('/update-profile',userController.updateProfilePost)
+
+router.post('/apply-loan',userController.applyLoan)
+
+
+
 module.exports=router;

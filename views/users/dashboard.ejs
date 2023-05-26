@@ -11,9 +11,12 @@
  
     #main-page{
         /* background-color: rgb(12, 23, 51); */
-        color: rgb(12, 23, 51);
-       
-
+        background-image:url('/images/bg-1.jpg');
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        /* color: rgb(12, 23, 51); */
+        color: white;
     }
 .section{
     display: flex;
@@ -25,18 +28,11 @@
 
 .box{
     color: white;
-    /* padding: 5px; */
     width: 50%;
     display: flex;
     justify-content: space-evenly;
     padding: 15px;
-   
 }
-/* .box:hover{
-  zoom: 1;
-} */
-
-
 
 span{
     color: rgb(12, 23, 51);
@@ -46,7 +42,10 @@ span{
 /* #progBG{
     background-color: rgb(12, 23, 51);
 } */
-
+input{
+    color: white;
+    background-color: rgb(12, 23, 51);
+}
 #bar{
     border-radius: 50px;
     text-align: center;
@@ -94,8 +93,6 @@ span{
         </div>
 <% } %>
        
-     
-       
         <div class="box">
             <% if(!isLoggedIn){ %>
                 Welcome <span>User</span>
@@ -117,15 +114,27 @@ span{
                 <form action="/apply-loan" method="post">
                
                     <div>
-                        <input type="text" value="<%=loan.loanType %>" disabled name="category">
+                        <input type="text" name="Category" value="<%=loan.loanType %>" disabled >
                     </div>
                     <div>
-                        <input type="text" value="<%=loan.amount %>" disabled name="amount">
+                        <input type="number" name="Amount" value="<%=loan.amount %>" disabled >
                     </div>
                     <div>
-                         <input type="text" value="<%=loan.duration %>" disabled name="duration">
+                         <input type="text" name="Duration" value="<%=loan.duration %>" disabled >
                     </div>
-                    <button>Get Loan</button>
+                    <!-- <input type="text" name="Category" value="<%=loan.loanType %>" disabled> -->
+            <input type="hidden" name="Name" value="<%=User.name %>">
+            <input type="hidden" name="Id" value="<%=User.id %>">
+            <input type="hidden" name="Bvn" value="<%=User.bvn %>">
+            <input type="hidden" name="Account" value="<%=User.account %>">
+            <input type="hidden" name="Picture" value="<%=User.picture %>">
+            <input type="hidden" name="Email" value="<%=User.email%>">
+            <input type="hidden" name="Bank" value="<%=User.bank%>">
+            <input type="hidden" name="Phone" value="<%=User.phone%>">
+            <input type="hidden" name="LoanType" value="<%=loan.loanType %>">
+            <input type="hidden" name="LoanAmount" value="<%=loan.amount %>">
+            <input type="hidden" name="LoanDuration" value="<%=loan.duration %>">
+            <button type="submit">Get Loan</button>
             </form>
      <%    }
        }

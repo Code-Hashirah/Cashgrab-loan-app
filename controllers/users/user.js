@@ -2,6 +2,7 @@ const session = require('express-session')
 const User=require('../../models/users')
 const bcrypt=require('bcrypt')
 const Loans=require('../../models/loansAvailable')
+const loansTaken=require('../../models/loansTaken')
 
 exports.homePage=(req, res)=>{
     res.render('index.ejs', {title:"Cash Grab Home"})
@@ -69,5 +70,19 @@ exports.updateProfilePost=(req,res)=>{
 }
 exports.applyLoan=(req,res)=>{
     let dateApplied=Date.now();
-    const {Name,Id,Bvn,Account,Picture,}=req.body
+    const {Email,Name,Phone,Bvn,Bank,Account,Picture,LoanType,LoanAmount,LoanDuration}=req.body;
+    loansTaken.create({
+         name:Name,
+         email:Email,
+         phone:Phone,
+         bvn:Bvn,
+         bank:Bank,
+         account:Account,
+         picture:Picture,
+         loanType:LoanType,
+         amount:LoanAmount,
+         duration:LoanDuration,
+    }).then(takenLoan=>{
+        res.redirect('/user-dashboard')
+    })
 }

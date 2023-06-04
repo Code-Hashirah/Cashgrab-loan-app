@@ -32,8 +32,9 @@ exports.adminAddLoanPost=(req,res)=>{
         });
 }
 exports.adminManageLoans=(req, res)=>{
+    let adminData=req.session.user;
     Loans.findAll().then(loans=>{
-        res.render('admin/manage-loans.ejs', {title:"Manage Loans", Loans:loans})
+        res.render('admin/manage-loans.ejs', {title:"Manage Loans", Admin:adminData, Loans:loans})
     })
 }
 

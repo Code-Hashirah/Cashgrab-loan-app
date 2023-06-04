@@ -5,28 +5,28 @@
     <%- include('../includes/admin-navbar.ejs') %>
 
   <main class="row mx-lg-5 w-100 container-fluid">
-    <div class="col-4  p-5 mx-5 my-1 badge text-bg-primary position-relative"  id="Blue">
+    <div class="col-4  p-4 mx-5 my-1 badge text-bg-primary position-relative"  id="Blue">
         Loans Available
   <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
     99+
     <span class="visually-hidden">unread messages</span>
   </span>
     </div>
-    <div class="col-4  p-5 mx-5 my-1 badge text-bg-warning position-relative"  id="Yellow">
+    <div class="col-4  p-4 mx-5 my-1 badge text-bg-warning position-relative"  id="Yellow">
         Loans Taken
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             99+
             <span class="visually-hidden">unread messages</span>
           </span>
     </div> <br>
-    <div class="col-4  p-5 mx-5 my-1 badge text-bg-success position-relative"  id="Green">
+    <div class="col-4  p-4 mx-5 my-1 badge text-bg-success position-relative"  id="Green">
         Loans Returned
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             99+
             <span class="visually-hidden">unread messages</span>
           </span>
     </div>
-    <div class="col-4  p-5 mx-5 my-1 badge text-bg-danger position-relative"   id="Red">
+    <div class="col-4  p-4 mx-5 my-1 badge text-bg-danger position-relative"   id="Red">
         Loans Unpaid
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             99+
@@ -38,10 +38,10 @@
   <table class="table table-dark table-hover">
     <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Loan Type</th>
-          <th scope="col">Duartion</th>
-          <th scope="col">Amount</th>
+          <th>ID</th>
+          <th>Loan Type</th>
+          <th>Duartion</th>
+          <th>Amount</th>
         </tr>
       </thead>
       <tbody>
@@ -51,7 +51,7 @@
 else{  %>
 <% for(let loan of Loans){ %>
     <tr>
-        <th scope="row"><%= loan.id %></th>
+        <th><%= loan.id %></th>
         <td><%= loan.loanType %></td>
         <td><%= loan.duration %></td>
         <td>₦<%= loan.amount %></td>

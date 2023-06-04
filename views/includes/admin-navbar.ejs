@@ -8,7 +8,9 @@
       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>     
     </div>
     <div class="offcanvas-body">
-     
+      <% if(isLoggedIn){ %>
+        <img src="<%= Admin.picture %>" alt="" width="100px" height="100px">
+       <%  } %>
                 <ul class="nav justify-content-center flex-column">
                   <li class="nav-item">
                     <a class="nav-link btn btn-outline-danger w-75" href="/admin-dashboard">Home <i class="fas fa-home"></i></a>
@@ -42,11 +44,7 @@
   <%  } %>
     
   <div class="">
-    <% if(isLoggedIn){ %>
-   <img src="<%= Admin.picture %>" alt="">
-  <%  } %>
-    
-    
+  
   </div>
 
   

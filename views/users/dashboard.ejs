@@ -56,6 +56,11 @@ input{
     height: 75px;
     border-radius: 75px;
 }
+input{
+    border-end-end-radius: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
 /* media query responsiveness  */
 
 @media only screen and (max-width: 768px) {
@@ -98,7 +103,7 @@ input{
                 Welcome <span>User</span>
         <%    }  
         else{  %>
-         <p>Welcome  <span style="font-family: Rubik_Gemstones; padding: 3px;"><%=User.name %></span> </p>
+         <p>Welcome  <span style="font-family: Rubik_Gemstones; padding: 3px; color:aliceblue;"><%=User.name %></span> </p>
      <%   } %>
           
         </div>
@@ -120,7 +125,7 @@ input{
                         <input type="number" name="Amount" value="<%=loan.amount %>" disabled >
                     </div>
                     <div>
-                         <input type="text" name="Duration" value="<%=loan.duration %>" disabled >
+                         <input type="text" name="Duration" value="<%=loan.duration %> Months" disabled >
                     </div>
                     <!-- <input type="text" name="Category" value="<%=loan.loanType %>" disabled> -->
             <input type="hidden" name="Name" value="<%=User.name %>">

@@ -16,7 +16,7 @@ const loans=sequelize.define('loans',{
         allowNull:false
     },
     amount:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.STRING,
         allowNull:false
     }
 })

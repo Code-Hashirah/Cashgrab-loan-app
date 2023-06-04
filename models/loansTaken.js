@@ -28,7 +28,7 @@ const loansTaken=sequelize.define('loansTaken',{
         allowNull:true,
     },
     account:{
-        type:DataTypes.INTEGER(10),
+        type:DataTypes.STRING(10),
         allowNull:true
     },
     picture:{

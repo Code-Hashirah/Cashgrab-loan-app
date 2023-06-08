@@ -82,6 +82,17 @@ label{
             <div class="input-box">
                 <label for="Email">OTP</label>
                 <input type="tel" name="OTP" id="Email">
+                <div>
+                    <% if(OtpError.length!==0){
+                    for (let error of OtpError){
+                      if(error.path=="OTP") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
             <div class="input-box">
                 <button type="submit" class="btn w-50  my-3 bg-primary text-light fa-bounce">Confirm</button>

@@ -17,7 +17,7 @@ router.post('/sign-up',[
 
 router.get('/otp',authController.otpPage)
 router.post('/otp',[
-
+    check('OTP').notEmpty().withMessage('Email cannot be blank').isLength(6).withMessage('Invalid OTP')
 ],authController.otpPost)
 
 router.get('/sign-in',authController.signInPage)

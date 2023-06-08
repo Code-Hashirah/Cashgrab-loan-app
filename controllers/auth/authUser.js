@@ -2,12 +2,23 @@ const Users=require('../../models/users')
 const bcrypt=require('bcrypt')
 const session = require('express-session')
 const nodemailer=require('nodemailer')
+const {validationResult}=require('express-validator')
+const crypto=require('crypto')
 
 exports.signUp=(req,res)=>{
-    res.render('users/registration', {title:"Cash Grab Sign Up"})
+    let errors=req.flash('Errors');
+    res.render('users/registration', {title:"Cash Grab Sign Up", ErrorMsg:errors})
 }
 
 exports.signUpPost=(req,res)=>{
+let error=validationResult(req)
+if(!error.isEmpty()){
+    req.flash('Errors',error.array())
+    console.log(error)
+    return req.session.save(()=>{
+        return res.redirect('/sign-up')
+    })
+}
     let pin;
     let OTP=[]
     for (let num = 0; num <6; num++) {
@@ -60,10 +71,18 @@ exports.signUpPost=(req,res)=>{
 }
 
 exports.otpPage=(req,res)=>{
-    res.render('users/OTP',{title:"OTP page"})
+    const Error=req.flash('error')
+    res.render('users/OTP',{title:"OTP page", OtpError:Error})
 }
 
 exports.otpPost=(req,res)=>{
+    let otpErr=validationResult(req)
+   if(!otpErr.isEmpty()){
+    req.flash('error',otpErr.array())
+    return req.session.save(()=>{
+        return res.redirect('/otp')
+    })
+   }
     const {OTP}=req.body;
     Users.findOne({where:{
         otp:OTP

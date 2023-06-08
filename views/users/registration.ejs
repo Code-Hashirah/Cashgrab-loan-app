@@ -84,20 +84,55 @@ label{
     <main>
         <h1>Cash Grab</h1>
         <form action="/sign-up" method="post" class="text-danger">
-            <h4>Sign Up</h4>
+           
+            <h4>Sign Up </h4>
+           
             <div class="input-box">
                 <label for="Email">Email</label><br>
                 <input type="text" name="Email" id="Email" placeholder="Enter email">
+                <div>
+                    <% if(ErrorMsg.length!==0){
+                    for (let error of ErrorMsg){
+                      if(error.path=="Email") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
     
             <div class="input-box">
                 <label for="">Password</label> <br>
                 <input type="password" name="Password" class="Password"  placeholder="Enter password">
+                <div>
+                    <% if(ErrorMsg.length!==0){
+                    for (let error of ErrorMsg){
+                      if(error.path=="Password") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
 
             <div class="input-box">
                 <label for="">Confirm Password</label> <br>
                 <input type="password" name="ConfirmPassword" class="Password"  placeholder="Confirm password">
+                <div>
+                    <% if(ErrorMsg.length!==0){
+                    for (let error of ErrorMsg){
+                      if(error.path=="ConfirmPassword") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
     <div class="input-box">
         <button type="submit" class="btn w-50  my-3 bg-primary text-light fa-fade">Sign Up <span class="fas fa-sign-in fa  fa-fade"></span></button>

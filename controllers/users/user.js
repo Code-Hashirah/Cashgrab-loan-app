@@ -9,6 +9,11 @@ exports.homePage=(req, res)=>{
     res.render('index.ejs', {title:"Cash Grab Home"})
 }
 
+exports.getApi=(req,res, next)=>{
+    User.findAll().then(users=>{
+        res.json(users)
+    })
+}
 exports.dashboardPage=(req,res)=>{
     let UserData=req.session.user
     let user=[];
@@ -151,7 +156,7 @@ exports.applyLoan=(req,res)=>{
            })
        }
        setTimeout(sendReminder,delay)
-        console.log(delay/10000)
+        // console.log(delay/10000)
         res.redirect('/user-dashboard')
     }).catch(err2=>{
         console.log(err2)

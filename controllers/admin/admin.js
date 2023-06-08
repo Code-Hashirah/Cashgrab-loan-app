@@ -6,7 +6,10 @@ const { validationResult } = require('express-validator');
 exports.adminDashboard=(req,res)=>{
     let adminData=req.session.user;
     Loans.findAll().then(loans=>{
-        res.render('admin/admin-dashboard.ejs',{title:"Admin Dashboard",Admin:adminData, Loans:loans})
+       Loans.count().then(avail=>{
+        res.render('admin/admin-dashboard.ejs',{title:"Admin Dashboard",Admin:adminData, Loans:loans, Available:avail})
+       })
+      
     })
     // res.render('admin/admin-dashboard.ejs',{title:"Admin Dashboard",Admin:adminData})
 }

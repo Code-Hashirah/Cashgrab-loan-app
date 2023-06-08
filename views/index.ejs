@@ -5,20 +5,32 @@
         margin: 0;
         box-sizing: border-box;
     }
-    body{
-        background-color: rgb(12, 23, 51);
-    }
+  
  
-    #main-page{
-        background-color: rgb(12, 23, 51);
-
+    #main-page{    
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
     }
+
+
+    #video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+}
 #section{
+    /* color: white; */
     display: flex;
     flex-direction: row-reverse;
-    /* justify-content: space-between; */
     justify-content: space-evenly;
     border: 1px solid white;
+    /* z-index: 1; */
 }
 .pcImage{
     max-width: 100%;
@@ -28,17 +40,20 @@
 .box{
     color: white;
     padding: 5px;
-    width: 30%;
+    width: 40%;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     justify-content: space-evenly;
     padding: 15px;
-   
+    margin-left: auto;
 }
-.box:hover{
-  zoom: 1;
+#box{
+    float: right;
+    /* color: black; */
+    font-weight: bolder;
+   color: white;
 }
+
 .steps:hover{
     box-shadow: 2px 2px 4px white;
     /* border: 2px groove white; */
@@ -47,9 +62,7 @@
     color: rgb(12, 23, 51);
 }
 
-/* #steps{
-    text-align: center;
-} */
+
 span{
     color: fuchsia;
     font-size: 25px;
@@ -62,6 +75,7 @@ pre{
 #manifesto{
     font-style: italic;
     font-size: 18px;
+    color: white;
 }
 ul{
     list-style-type: none;
@@ -105,12 +119,14 @@ ul>li{
   
 
     <%- include ('includes/navbar.ejs') %>
-   
+    <video id="video" autoplay loop>
+        <source  src="/vids/time.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+ 
     <section id="section">
-        <div class="box">
-            <img class="pcImage" src="/images/loan-image1.png" alt="image1">  
-        </div>
-        <div class="box">
+      
+        <div class="box" id="box" >
             <p id="manifesto">
                 Cash Grab is your No <span class="fas fa-award"></span>1 online loan App. <br>
                 Get instant loan in less than ten minutes of applying. <br>

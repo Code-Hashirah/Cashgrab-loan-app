@@ -109,25 +109,57 @@ section{
         <%- include('../includes/navbar.ejs') %>
       </div> 
     <main>
-      
+<!-- <span><%=JSON.stringify(UpdateError)%></span>       -->
       <div class="holder ps-5 container">
         <form action="/update-profile" id="form" method="post" class="text-danger row w-100 " enctype="multipart/form-data">
-            
             <section class="col-6 px-3">
                 <div class="input-box">
                     <label for="Name">Name</label><br>
                     <input type="text" name="Name" id="Name" class="Email" placeholder="Enter name...">
+                    <div>
+                        <% if(UpdateError.length!==0){
+                        for (let error of UpdateError){
+                          if(error.path=="Name") { %>
+                            <div class="text-danger"> <%= error.msg %></div>
+                        <%  }
+                        }
+                      }
+                        %> 
+                      
+                      </div>
                 </div>
     
                 
                 <div class="input-box">
                     <label for="Phone">Phone Number</label><br>
                     <input type="tel" name="Phone" id="Phone" class="Email" placeholder="Enter phone number">
+                    <div>
+                        <% if(UpdateError.length!==0){
+                        for (let error of UpdateError){
+                          if(error.path=="Phone") { %>
+                            <div class="text-danger"> <%= error.msg %></div>
+                        <%  }
+                        }
+                      }
+                        %> 
+                      
+                      </div>
                 </div>
     
                 <div class="input-box">
                     <label for="Bvn">BVN</label> <br>
                     <input type="text" name="Bvn" id="Bvn" class="Password"  placeholder="Enter BVN">
+                    <div>
+                        <% if(UpdateError.length!==0){
+                        for (let error of UpdateError){
+                          if(error.path=="Bvn") { %>
+                            <div class="text-danger"> <%= error.msg %></div>
+                        <%  }
+                        }
+                      }
+                        %> 
+                      
+                      </div>
                 </div>
 
                 <div class="input-box">
@@ -145,6 +177,17 @@ section{
                 <div class="input-box">
                     <label for="Monthly Income">Salary</label> <br>
                     <input type="number" name="Salary" id="Salary" class="Password"  placeholder="Enter monthly income">
+                    <div>
+                        <% if(UpdateError.length!==0){
+                        for (let error of UpdateError){
+                          if(error.path=="Salary") { %>
+                            <div class="text-danger"> <%= error.msg %></div>
+                        <%  }
+                        }
+                      }
+                        %> 
+                      
+                      </div>
                 </div>
             </section>
           
@@ -153,11 +196,33 @@ section{
                 <div class="input-box">
                     <label for="Account">Account Number</label> <br>
                     <input type="number" name="Account" id="Account" class="Password"  placeholder="Enter Account Number">
+                    <div>
+                        <% if(UpdateError.length!==0){
+                        for (let error of UpdateError){
+                          if(error.path=="Account") { %>
+                            <div class="text-danger"> <%= error.msg %></div>
+                        <%  }
+                        }
+                      }
+                        %> 
+                      
+                      </div>
                 </div>
                 
                 <div class="input-box">
                     <label for="Adress">Address</label> <br>
                     <input type="text" name="Address" id="Address" class="Password"  placeholder="Address">
+                    <div>
+                        <% if(UpdateError.length!==0){
+                        for (let error of UpdateError){
+                          if(error.path=="Address") { %>
+                            <div class="text-danger"> <%= error.msg %></div>
+                        <%  }
+                        }
+                      }
+                        %> 
+                      
+                      </div>
                 </div>
                 <div class="input-box">
                     <label for="ID">ID Card</label><br>

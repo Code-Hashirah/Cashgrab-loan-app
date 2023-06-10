@@ -4,11 +4,21 @@ const session =require('express-session')
 const {validationResult}=require('express-validator')
 const nodemailer=require('nodemailer')
 const fs =require('fs')
+
 exports.adminSignUpPage=(req,res)=>{
-    res.render('admin/registration.ejs', {title:"Cash~Grab Admin Registration"})
+    let errorsAdmin=req.flash('AdminErrors');
+    res.render('admin/registration.ejs', {title:"Cash~Grab Admin Registration", ErrorMsg:errorsAdmin})
 }
 
 exports.adminSignUpPost=(req,res)=>{
+    let error=validationResult(req)
+    if(!error.isEmpty()){
+        req.flash('AdminErrors', error.array())
+        console.log(error)
+        return req.session.save(()=>{
+            return res.redirect('/admin-sign-up')
+        })
+    }
     let pin;
     let OTP=[]
     for (let num = 0; num <6; num++) {
@@ -32,6 +42,7 @@ exports.adminSignUpPost=(req,res)=>{
         email:Email,
         password:hashedPassword,
         name:Name,
+        phone:Phone,
         otp:OTP,
         role:Role,
         idCard:IdPath,
@@ -76,11 +87,20 @@ exports.adminSignUpPost=(req,res)=>{
 } 
 // OTP codes 
 exports.adminOtpPage=(req,res)=>{
-    res.render('admin/OTP',{title:"Admin::OTP page"})
+    const Error=req.flash('error')
+    res.render('admin/OTP',{title:"Admin::OTP page", otpError:Error})
 }
 
 exports.adminOtpPost=(req,res)=>{
+  
     const {OTP}=req.body;
+    let otpErr=validationResult(req)
+    if(!otpErr.isEmpty()){
+     req.flash('error',otpErr.array())
+     return req.session.save(()=>{
+         return res.redirect('/admin-otp')
+     })
+    }
     Users.findOne({where:{
         otp:OTP
     }}).then(confirmed=>{
@@ -94,12 +114,20 @@ exports.adminOtpPost=(req,res)=>{
 
 // Sign in code 
 exports.adminSignInPage=(req,res)=>{
-  
-    res.render('admin/login.ejs', {title:"Admin::Cash Grab Sign-In"})
+  let Error=req.flash('AdminLogErr')
+    res.render('admin/login.ejs', {title:"Admin::Cash Grab Sign-In", AdminErr:Error})
    
 }
 
 exports.adminSignInPost=(req,res)=>{
+    let error=validationResult(req)
+    if(!error.isEmpty()){
+        req.flash('AdminLogErr', error.array())
+        console.log(error)
+        return req.session.save(()=>{
+            return res.redirect('/admin-sign-in')
+        })
+    }
     const {Email, Password}=req.body
     Users.findOne({where:{
         email:Email

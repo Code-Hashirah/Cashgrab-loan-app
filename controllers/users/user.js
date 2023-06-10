@@ -5,16 +5,21 @@ const Loans=require('../../models/loansAvailable')
 const loansTaken=require('../../models/loansTaken')
 const nodemailer=require('nodemailer')
 const date = require('date-and-time')
-exports.homePage=(req, res)=>{
-    res.render('index.ejs', {title:"Cash Grab Home"})
-}
-
+const { validationResult } = require('express-validator')
+// *********Data for API ******
 exports.getApi=(req,res, next)=>{
     User.findAll().then(users=>{
         res.json(users)
     })
 }
+// ************************Main Code ***********************
+exports.homePage=(req, res)=>{
+    res.render('index.ejs', {title:"Cash Grab Home"})
+}
+
+
 exports.dashboardPage=(req,res)=>{
+
     let UserData=req.session.user
     let user=[];
     for(let value in UserData){
@@ -40,10 +45,19 @@ exports.dashboardPage=(req,res)=>{
 }
 
 exports.updateProfilePage=(req,res)=>{
-    res.render('users/update-profile.ejs',{title:"Improve Profile"})
+    let updateErr=req.flash('UpdateError')
+    res.render('users/update-profile.ejs',{title:"Improve Profile", UpdateError:updateErr})
 }
 
 exports.updateProfilePost=(req,res)=>{
+    let Errors=validationResult(req)
+    if(!Errors.isEmpty()){
+        req.flash('UpdateError', Errors.array())
+        console.log(Errors)
+        return req.session.save(()=>{
+            return res.redirect('/update-profile')
+        })
+    }
     let userID=req.session.user.id;
     console.log(userID)
     const {Name,Phone, Bvn, Bank,Salary,Account, Address}=req.body

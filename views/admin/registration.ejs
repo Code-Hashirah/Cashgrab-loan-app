@@ -90,21 +90,65 @@ label{
             <div class="input-box">
                 <label for="Name">Name</label>
                 <input type="text" name="Name" id="Name" class="Email" placeholder="Enter name...">
+                <div>
+                    <% if(ErrorMsg.length!==0){
+                    for (let error of ErrorMsg){
+                      if(error.path=="Name") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
 
             <div class="input-box">
                 <label for="Email">Email</label>
                 <input type="text" name="Email" id="Email" class="Email" placeholder="Enter email">
+                <div>
+                    <% if(ErrorMsg.length!==0){
+                    for (let error of ErrorMsg){
+                      if(error.path=="Email") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
             
             <div class="input-box">
                 <label for="Phone">Phone Number</label>
                 <input type="tel" name="Phone" id="Phone" class="Email" placeholder="Enter phone number">
+                <div>
+                    <% if(ErrorMsg.length!==0){
+                    for (let error of ErrorMsg){
+                      if(error.path=="Phone") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
 
             <div class="input-box">
                 <label for="Email">Password</label> 
                 <input type="password" name="Password" id="Password" class="Password"  placeholder="Enter password">
+                <div>
+                    <% if(ErrorMsg.length!==0){
+                    for (let error of ErrorMsg){
+                      if(error.path=="Password") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
             
             <div class="input-box">

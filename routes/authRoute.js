@@ -3,6 +3,8 @@ const adminAuthController=require('../controllers/auth/authAdmin')
 const router= require('express').Router()
 const {isEmpty}=require('validator');
 const {check}=require('express-validator')
+const isAdmin=require('../middlewares/isAdmin')
+const isAuth=require('../middlewares/isAuth')
 
 router.get('/sign-up',authController.signUp)
 router.post('/sign-up',[

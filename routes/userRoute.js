@@ -2,11 +2,13 @@ const userController= require('../controllers/users/user')
 const router = require('express').Router()
 const {isEmpty}=require('validator');
 const {check}=require('express-validator')
+const isAdmin=require('../middlewares/isAdmin')
+const isAuth=require('../middlewares/isAuth')
 
 router.get('/', userController.homePage)
-router.get('/user-dashboard',userController.dashboardPage)
+router.get('/user-dashboard',isAuth,userController.dashboardPage)
 
-router.get('/update-profile',userController.updateProfilePage)
+router.get('/update-profile',isAuth,userController.updateProfilePage)
 router.post('/update-profile', [
     check('Name').notEmpty().withMessage('Name cannot be blank'),
     check('Phone').notEmpty().withMessage('Phone number cannot be blank'),

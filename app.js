@@ -17,6 +17,7 @@ const session=require('express-session')
 const Session=require('./models/session')
 const SequelizeStore=require('connect-session-sequelize')(session.Store)
 const flash = require('connect-flash')
+const ErrController=require('./controllers/errors')
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({encoded:true}));
 app.use(bodyParser2.json())
@@ -76,9 +77,17 @@ app.use((req,res,next)=>{
     res.locals.user=req.session.user
     next()
 })
+
 app.use(UserRoute)
  app.use(authRoute)
  app.use(adminRoute)
+
+ app.get('/500',ErrController.error500 )
+app.use(ErrController.error404)
+app.use((error, req, res, next)=>{
+  next()
+  return res.redirect('/500')
+})
 //  loansTaken.sync({force:true})
 // Users.sync({alter:true})
 // Loans.sync({force:true})

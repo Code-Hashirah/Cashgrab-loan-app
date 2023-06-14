@@ -46,6 +46,10 @@ const loansTaken=sequelize.define('loansTaken',{
     name:{
         type:DataTypes.STRING(50),
         allowNull:false
+    },
+    returned:{
+        type:DataTypes.STRING(10),
+        allowNull:false
     }
 })
 

@@ -21,6 +21,8 @@ router.post('/update-profile', [
 
 router.post('/apply-loan',userController.applyLoan)
 
+router.get('/pay-loan',userController.payBackLoanGet)
+router.post('/pay-loan',userController.payBackLoanPost)
 router.get('/get-users',userController.getApi)
 
 module.exports=router;

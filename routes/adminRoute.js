@@ -3,7 +3,7 @@ const router=require('express').Router()
 const {check}= require('express-validator')
 const isAdmin=require('../middlewares/isAdmin')
 const isAuth=require('../middlewares/isAuth')
-router.get('/admin-dashboard',isAdmin,isAuth,adminController.adminDashboard)
+router.get('/admin-dashboard',isAuth,adminController.adminDashboard)
 
 router.get('/admin-add-loan',isAdmin,isAuth,adminController.adminAddLoanPage)
 router.post('/admin-add-loan',[

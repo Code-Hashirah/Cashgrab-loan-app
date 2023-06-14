@@ -1,0 +1,161 @@
+<%- include('../includes/admin-header.ejs') %>
+<style>
+  body{
+        background-image: url('/images/bg7.jpg');
+       background-repeat: no-repeat;
+       background-size: cover;
+       background-position: center;
+       background-attachment: fixed;
+       width: 100%;
+    }
+    h1,h4{
+        text-align: center;
+    }
+    main{
+        color: white;
+        width: 100%;
+    }
+    .input-box{
+        margin: auto;
+        width: 80%;
+        padding-bottom: 20px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+    }
+    form{
+        margin: auto;
+        width:40%;
+        color: black;
+        margin-top: 10px;
+        background-color:white;
+        border-radius:12px;
+        padding: 15px;
+        opacity: 0.7;
+        display: flexbox;
+    }
+    .Email{
+            width: 100%;
+            border: none;
+            height: 40px;
+            color: black;
+            border-bottom: 1px outset black;
+             background-color: transparent;
+            outline: none;
+        }
+
+label{
+    color: black;
+    text-align: left;
+    font-size: 20px;
+}
+
+@media only screen and (max-width:768px) {
+    body{
+        max-height: fit-content;
+    }
+    main{
+        display: block;
+        width: 100%;
+        height: 80%;
+        margin-bottom: 30px;
+        display: block;
+         }
+         form{
+            margin-top: 10px;
+            width: 80%;
+            padding-top: 10px;
+            padding-bottom: 50px;
+         }
+}
+</style>
+
+<body>
+    <%- include ('../includes/navbar.ejs') %>
+    <main>
+      
+        <% if(!User){ %>
+        <h1>No Loans taken yet</h1>
+       <% }
+       else{ 
+        for(let Users of User){ %>
+            <form id="form" class="text-danger" enctype="multipart/form-data" action="/pay-loan" method="post">
+                <h4>Admin:Pay Loans</h4>
+                
+                <div class="input-box">
+                    <label for="Type">Email</label><br>
+                    <input type="text" name="Email" id="Type" class="Email" value="<%=Users.email %>">
+                </div>
+    
+                <div class="input-box">
+                    <label for="Email">Duration</label><br>
+                    <input type="number" name="duration" id="Duration" class="Email" value="<%=Users.duration %>">
+                </div>
+                
+                <div class="input-box">
+                    <label for="Amount">Amount</label><br>
+                    <input type="number" name="Amount" id="Amount" class="Email" value="<%=Users.amount %>" >
+                </div>
+    
+                <div class="input-box">
+                    <label for="Amount">Name</label><br>
+                    <input type="number" name="name" id="Name" class="Email" value="<%=Users.name %>" >
+                </div>
+    
+        <div class="input-box">
+            <button type="submit" class="btn w-50  my-3 bg-primary text-light fa-bounce" id="submit">Pay Loan</button>
+        </div>
+              
+            </form>
+    <%   }
+     
+       }
+       %>
+      
+    </main>    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let form=document.getElementById('form')
+        form.addEventListener('submit',send)
+        let loadStatus=document.getElementById('submit')
+        function send(e){
+            e.preventDefault();
+            loadStatus.value="Loading..."
+    
+            let Type=document.getElementById('Type').value;
+            let Duration=document.getElementById('Duration').value;
+            let Amount=document.getElementById('Amount').value;
+    
+            let loanData = {loanType:Type,duration:Duration, amount:Amount };
+   
+            axios.post('/admin-add-loan', loanData)
+            
+                .then(response => {
+                    console.log(response)
+                    loadStatus.value="Submit";
+                    if(response.data.success){
+                        document.getElementById('success').innerHTML = `
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <strong>Success!</strong> Product submitted successfully 
+                        </div>`;
+                        setTimeout(() => {
+                            window.location='/admin-dashboard';
+                        }, 3000);
+                    }
+                })
+                .catch(error => {zxc   
+                    console.log(error);
+                    loadStatus.value="Submit";
+                    document.getElementById('error').innerHTML = `
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <strong>Oops!</strong> An error occurred while submitting the product.
+                    </div>`;
+                });
+        }
+    </script> -->
+    
+    <%- include('../includes/admin-footer.ejs') %>
+</body>
+</html>

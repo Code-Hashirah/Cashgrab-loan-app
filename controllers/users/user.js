@@ -6,6 +6,10 @@ const loansTaken=require('../../models/loansTaken')
 const nodemailer=require('nodemailer')
 const date = require('date-and-time')
 const { validationResult } = require('express-validator')
+// Authorization: 'Bearer ' + process.env.PUBLIC_KEY
+// const https = require('https');
+// require('dotenv').config();
+
 // *********Data for API ******
 exports.getApi=(req,res, next)=>{
     User.findAll().then(users=>{
@@ -105,6 +109,7 @@ exports.applyLoan=(req,res)=>{
          loanType:LoanType,
          amount:LoanAmount,
          duration:LoanDuration,
+         returned:"No"
     }).then(takenLoan=>{
          // email sending 
          const email={
@@ -176,3 +181,65 @@ exports.applyLoan=(req,res)=>{
         console.log(err2)
     })
 }
+exports.payBackLoanGet=(req,res)=>{
+    let UserEmail=req.session.user.email;
+    loansTaken.findAll({
+        where:{
+            email:UserEmail
+        }
+    }).then(user=>{
+        res.render('users/payLoan.ejs', {title:"Pay Loan", User:user})
+    })
+    
+}
+
+    // ***second code **** 
+
+  exports.payBackLoanPost=(req, res) => {
+    const https = require('https');
+    const url = 'https://api.paystack.co/transaction/initialize';
+    const {Email, Amount}=req.body
+    const fields = {
+      email: Email,
+      amount: Amount*100
+    };
+  
+    const fieldsString = new URLSearchParams(fields).toString();
+  
+    const options = {
+      hostname: 'api.paystack.co',
+      path: '/transaction/initialize',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer sk_test_681170f9a31ac06f49c31491b927ea78b4bf833e',
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(fieldsString)
+      }
+    };
+  
+     req = https.request(options, (response) => {
+      let responseData = '';
+  
+      response.on('data', (chunk) => {
+        responseData += chunk;
+      });
+  
+      response.on('end', () => {
+        const parsedResponse = JSON.parse(responseData);
+        const authorizationURL = parsedResponse.data.authorization_url;
+        console.log('Authorization URL:', authorizationURL);
+  
+        // Redirect to the authorization URL
+        res.redirect(authorizationURL);
+      });
+    });
+  
+    req.on('error', (error) => {
+      console.error('Request error:', error);
+      res.status(500).send('Internal Server Error');
+    });
+  
+    req.write(fieldsString);
+    req.end();    
+  }

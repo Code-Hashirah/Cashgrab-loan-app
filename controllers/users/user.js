@@ -201,7 +201,8 @@ exports.payBackLoanGet=(req,res)=>{
     const {Email, Amount}=req.body
     const fields = {
       email: Email,
-      amount: Amount*100
+      amount: Amount*100,
+      callback_url: 'https://localhost:3007/pay-loan' 
     };
   
     const fieldsString = new URLSearchParams(fields).toString();

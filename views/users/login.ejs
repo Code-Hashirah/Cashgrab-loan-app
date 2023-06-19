@@ -92,11 +92,33 @@ label{
             <div class="input-box">
                 <label for="Email">Email</label>
                 <input type="text" name="Email" id="Email">
+                <div>
+                    <% if(UserErr.length!==0){
+                    for (let error of UserErr){
+                      if(error.path=="Email") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
     
             <div class="input-box">
                 <label for="Password">Password</label>
                 <input type="password" name="Password" id="Password">
+                <div>
+                    <% if(UserErr.length!==0){
+                    for (let error of UserErr){
+                      if(error.path=="Password") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
     <div class=" text-center">
         <button type="submit" class="btn w-50  my-3 bg-primary text-light fa-bounce">Login <span class="fas fa-sign-in fa  fa-bounce"></span></button>

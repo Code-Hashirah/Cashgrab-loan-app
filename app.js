@@ -83,13 +83,17 @@ app.use(UserRoute)
  app.use(authRoute)
  app.use(adminRoute)
 
+//  End of code ]
+
+
+
  app.get('/500',ErrController.error500 )
 app.use(ErrController.error404)
 app.use((error, req, res, next)=>{
   next()
   return res.redirect('/500')
 })
- loansTaken.sync({alter:true})
+//  loansTaken.sync({alter:true})
 // Users.sync({alter:true})
 // Loans.sync({force:true})
 sequelize.sync().then(port=>{

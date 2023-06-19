@@ -96,12 +96,20 @@ exports.otpPost=(req,res)=>{
 }
 
 exports.signInPage=(req,res)=>{
-  
-    res.render('users/login.ejs', {title:"Cash Grab Sign-In"})
+    let Error=req.flash('AdminLogErr')
+    res.render('users/login.ejs', {title:"Cash Grab Sign-In", UserErr:Error})
    
 }
 
 exports.signIn=(req,res)=>{
+    let error=validationResult(req)
+    if(!error.isEmpty()){
+        req.flash('AdminLogErr', error.array())
+        console.log(error)
+        return req.session.save(()=>{
+            return res.redirect('/sign-in')
+        })
+    }
     const {Email, Password}=req.body
     Users.findOne({where:{
         email:Email

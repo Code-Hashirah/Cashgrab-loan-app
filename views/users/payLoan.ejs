@@ -84,26 +84,18 @@ label{
                 
                 <div class="input-box">
                     <label for="Type">Email</label><br>
-                    <input type="text" name="Email" id="Type" class="Email" value="<%=Users.email %>">
+                    <input type="text" name="Email" id="Type" class="Email" value="<%=Users.email %>" readonly>
                 </div>
     
-                <div class="input-box">
-                    <label for="Email">Duration</label><br>
-                    <input type="number" name="duration" id="Duration" class="Email" value="<%=Users.duration %>">
-                </div>
                 
                 <div class="input-box">
                     <label for="Amount">Amount</label><br>
-                    <input type="number" name="Amount" id="Amount" class="Email" value="<%=Users.amount %>" >
+                    <input type="number" name="Amount" id="Amount" class="Email" value="<%=Users.amount %>" readonly>
                 </div>
     
-                <div class="input-box">
-                    <label for="Amount">Name</label><br>
-                    <input type="number" name="name" id="Name" class="Email" value="<%=Users.name %>" >
-                </div>
     
         <div class="input-box">
-            <button type="submit" class="btn w-50  my-3 bg-primary text-light fa-bounce" id="submit">Pay Loan</button>
+            <button type="submit" class="btn w-50  my-3 bg-primary text-light fa-fade" id="submit">Pay Loan</button>
         </div>
               
             </form>

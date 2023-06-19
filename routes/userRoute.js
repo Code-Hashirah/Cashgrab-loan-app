@@ -24,5 +24,5 @@ router.post('/apply-loan',userController.applyLoan)
 router.get('/pay-loan',userController.payBackLoanGet)
 router.post('/pay-loan',userController.payBackLoanPost)
 router.get('/get-users',userController.getApi)
-
+// router.get('/callback_url', userController.callback);
 module.exports=router;

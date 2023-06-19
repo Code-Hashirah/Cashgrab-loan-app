@@ -130,7 +130,8 @@ exports.adminSignInPost=(req,res)=>{
     }
     const {Email, Password}=req.body
     Users.findOne({where:{
-        email:Email
+        email:Email,
+        role:'Admin'
     }}).then(userDetails=>{
         bcrypt.compare(Password,userDetails.password).then(verifiedUser=>{
             if(!verifiedUser){
@@ -139,7 +140,7 @@ exports.adminSignInPost=(req,res)=>{
             req.session.isLoggedIn=true;
             req.session.user=userDetails
             return req.session.save(()=>{
-                res.redirect('/admin-dashboard')
+              res.redirect('/admin-dashboard')
             })
         })
     })

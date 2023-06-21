@@ -116,6 +116,7 @@ exports.signIn=(req,res)=>{
     }}).then(userDetails=>{
         if(!userDetails){
         res.redirect('/sign-in')
+        
         }
         bcrypt.compare(Password,userDetails.password).then(verifiedUser=>{
             if(!verifiedUser){

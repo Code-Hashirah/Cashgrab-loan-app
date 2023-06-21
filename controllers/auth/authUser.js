@@ -96,22 +96,39 @@ exports.otpPost=(req,res)=>{
 }
 
 exports.signInPage=(req,res)=>{
-  
-    res.render('users/login.ejs', {title:"Cash Grab Sign-In"})
+    let errors=req.flash('Errors');
+    let logErr=req.flash('error')
+    res.render('users/login.ejs', {title:"Cash Grab Sign-In", ErrorMsg:errors, FoundErr:logErr})
    
 }
 
 exports.signIn=(req,res)=>{
     const {Email, Password}=req.body
+    let error=validationResult(req)
+if(!error.isEmpty()){
+    req.flash('Errors',error.array())
+    console.log(error)
+    return req.session.save(()=>{
+        return res.redirect('/sign-in')
+    })
+}
     Users.findOne({where:{
         email:Email
     }}).then(userDetails=>{
         if(!userDetails){
-        res.redirect('/sign-in')
-        }
+            req.flash('error', 'User  email or password incorrect')
+            return req.session.save(() => {
+                res.redirect('/sign-in')
+             return    userDetails
+            })
+            
+        }else{
         bcrypt.compare(Password,userDetails.password).then(verifiedUser=>{
             if(!verifiedUser){
-                res.redirect('/sign-in')
+                req.flash('error', 'Email or password incorrect')
+                return req.session.save(() => {
+                   res.redirect('/sign-in')               
+                })
             }
             req.session.isLoggedIn=true;
             req.session.user=userDetails
@@ -119,6 +136,7 @@ exports.signIn=(req,res)=>{
                 res.redirect('/user-dashboard')
             })
         })
+        }
     })
 }
 exports.signOut=(req,res)=>{

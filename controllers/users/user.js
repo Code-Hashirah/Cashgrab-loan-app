@@ -201,7 +201,8 @@ exports.payBackLoanGet=(req,res)=>{
     const {Email, Amount}=req.body
     const fields = {
       email: Email,
-      amount: Amount*100
+      amount: Amount*100,
+      
     };
   
     const fieldsString = new URLSearchParams(fields).toString();
@@ -239,7 +240,9 @@ exports.payBackLoanGet=(req,res)=>{
       console.error('Request error:', error);
       res.status(500).send('Internal Server Error');
     });
-  
+  res.status(200).send(()=>{
+
+  })
     req.write(fieldsString);
     req.end();    
   }

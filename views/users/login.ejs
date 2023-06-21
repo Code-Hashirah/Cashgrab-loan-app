@@ -89,14 +89,37 @@ label{
         <h1>Cash Grab</h1> 
         <form action="/sign-in" method="post">
             <h4>Sign In</h4> <hr>
+            <span class="text-bg-danger"><%=FoundErr%></span>
             <div class="input-box">
                 <label for="Email">Email</label>
                 <input type="text" name="Email" id="Email">
+                <div>
+                    <% if(ErrorMsg.length!==0){
+                    for (let error of ErrorMsg){
+                      if(error.path=="Email") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
     
             <div class="input-box">
                 <label for="Password">Password</label>
                 <input type="password" name="Password" id="Password">
+                <div>
+                    <% if(ErrorMsg.length!==0){
+                    for (let error of ErrorMsg){
+                      if(error.path=="Password") { %>
+                        <div class="text-danger"> <%= error.msg %></div>
+                    <%  }
+                    }
+                  }
+                    %> 
+                  
+                  </div>
             </div>
     <div class=" text-center">
         <button type="submit" class="btn w-50  my-3 bg-primary text-light fa-bounce">Login <span class="fas fa-sign-in fa  fa-bounce"></span></button>

@@ -89,7 +89,7 @@ app.use((error, req, res, next)=>{
   next()
   return res.redirect('/500')
 })
- loansTaken.sync({alter:true})
+//  loansTaken.sync({alter:true})
 // Users.sync({alter:true})
 // Loans.sync({force:true})
 sequelize.sync().then(port=>{

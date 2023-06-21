@@ -202,7 +202,7 @@ exports.payBackLoanGet=(req,res)=>{
     const fields = {
       email: Email,
       amount: Amount*100,
-      
+      callback_url: 'https://localhost:3007/pay-loan' 
     };
   
     const fieldsString = new URLSearchParams(fields).toString();
@@ -212,7 +212,7 @@ exports.payBackLoanGet=(req,res)=>{
       path: '/transaction/initialize',
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ',
+        'Authorization': 'Bearer sk_test_681170f9a31ac06f49c31491b927ea78b4bf833e',
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Content-Length': Buffer.byteLength(fieldsString)

@@ -83,6 +83,10 @@ app.use(UserRoute)
  app.use(authRoute)
  app.use(adminRoute)
 
+//  End of code ]
+
+
+
  app.get('/500',ErrController.error500 )
 app.use(ErrController.error404)
 app.use((error, req, res, next)=>{

@@ -133,6 +133,14 @@ exports.adminSignInPost=(req,res)=>{
         email:Email,
         role:'Admin'
     }}).then(userDetails=>{
+        if(!userDetails){
+            req.flash('error', 'user  email or password incorrect')
+            return req.session.save(() => {
+                res.redirect('/admin-sign-in')
+                return userDetails
+            })
+            
+        }
         bcrypt.compare(Password,userDetails.password).then(verifiedUser=>{
             if(!verifiedUser){
                 res.redirect('/admin-sign-in')

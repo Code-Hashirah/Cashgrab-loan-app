@@ -97,7 +97,8 @@ exports.otpPost=(req,res)=>{
 
 exports.signInPage=(req,res)=>{
     let Error=req.flash('AdminLogErr')
-    res.render('users/login.ejs', {title:"Cash Grab Sign-In", UserErr:Error})
+    let error=req.flash('error')
+    res.render('users/login.ejs', {title:"Cash Grab Sign-In", UserErr:Error, FoundErr:error})
    
 }
 
@@ -111,16 +112,26 @@ exports.signIn=(req,res)=>{
         })
     }
     const {Email, Password}=req.body
+   
     Users.findOne({where:{
         email:Email
     }}).then(userDetails=>{
         if(!userDetails){
-        res.redirect('/sign-in')
-        
-        }
+
+            req.flash('error', 'User  email or password incorrect')
+            return req.session.save(() => {
+                res.redirect('/sign-in')
+             return    userDetails
+            })
+            
+        }else{
+
         bcrypt.compare(Password,userDetails.password).then(verifiedUser=>{
             if(!verifiedUser){
-                res.redirect('/sign-in')
+                req.flash('error', 'Email or password incorrect')
+                return req.session.save(() => {
+                   res.redirect('/sign-in')               
+                })
             }
             req.session.isLoggedIn=true;
             req.session.user=userDetails
@@ -128,6 +139,7 @@ exports.signIn=(req,res)=>{
                 res.redirect('/user-dashboard')
             })
         })
+        }
     })
 }
 exports.signOut=(req,res)=>{

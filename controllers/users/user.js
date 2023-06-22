@@ -198,11 +198,11 @@ exports.payBackLoanGet=(req,res)=>{
     exports.payBackLoanPost = (req, res) => {
         const https = require('https');
         const url = 'https://api.paystack.co/transaction/initialize';
-        const { Email, Amount } = req.body;
+        const {Email, Amount}=req.body
         const fields = {
           email: Email,
-          amount: Amount * 100,
-          callback_url: 'https://localhost:3007/pay-loan'
+          amount: Amount*100,
+          callback_url: 'localhost:3007/pay-loan' 
         };
       
         const fieldsString = new URLSearchParams(fields).toString();
@@ -212,7 +212,7 @@ exports.payBackLoanGet=(req,res)=>{
           path: '/transaction/initialize',
           method: 'POST',
           headers: {
-            'Authorization': 'secret key',
+            'Authorization': 'Bearer sk_test_',
             'Cache-Control': 'no-cache',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': Buffer.byteLength(fieldsString)
@@ -242,6 +242,6 @@ exports.payBackLoanGet=(req,res)=>{
         });
       
         req.write(fieldsString);
-        req.end();
+        req.end();    
       };
       

@@ -240,9 +240,9 @@ exports.payBackLoanGet=(req,res)=>{
       console.error('Request error:', error);
       res.status(500).send('Internal Server Error');
     });
-  res.status(200).send(()=>{
+//   res.status(200).send(()=>{
 
-  })
+//   })
     req.write(fieldsString);
     req.end();    
   }

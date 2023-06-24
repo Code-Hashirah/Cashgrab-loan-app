@@ -85,7 +85,7 @@ exports.updateProfilePost=(req,res)=>{
         user.picture=PassportPicPath
       return  user.save()
     }).then(updated=>{
-        req.session.save(()=>{
+      return  req.session.save(()=>{
        return     res.redirect('user-dashboard')
         })
     }).catch(err=>{
@@ -195,54 +195,52 @@ exports.payBackLoanGet=(req,res)=>{
 
     // ***second code **** 
 
-  exports.payBackLoanPost=(req, res) => {
-    const https = require('https');
-    const url = 'https://api.paystack.co/transaction/initialize';
-    const {Email, Amount}=req.body
-    const fields = {
-      email: Email,
-      amount: Amount*100,
-      callback_url: 'https://localhost:3007/pay-loan' 
-    };
-  
-    const fieldsString = new URLSearchParams(fields).toString();
-  
-    const options = {
-      hostname: 'api.paystack.co',
-      path: '/transaction/initialize',
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer sk_test_681170f9a31ac06f49c31491b927ea78b4bf833e',
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': Buffer.byteLength(fieldsString)
-      }
-    };
-  
-     req = https.request(options, (response) => {
-      let responseData = '';
-  
-      response.on('data', (chunk) => {
-        responseData += chunk;
-      });
-  
-      response.on('end', () => {
-        const parsedResponse = JSON.parse(responseData);
-        const authorizationURL = parsedResponse.data.authorization_url;
-        console.log('Authorization URL:', authorizationURL);
-  
-        // Redirect to the authorization URL
-        res.redirect(authorizationURL);
-      });
-    });
-  
-    req.on('error', (error) => {
-      console.error('Request error:', error);
-      res.status(500).send('Internal Server Error');
-    });
-//   res.status(200).send(()=>{
-
-//   })
-    req.write(fieldsString);
-    req.end();    
-  }
+    exports.payBackLoanPost = (req, res) => {
+        const https = require('https');
+        const url = 'https://api.paystack.co/transaction/initialize';
+        const {Email, Amount}=req.body
+        const fields = {
+          email: Email,
+          amount: Amount*100,
+          callback_url: 'localhost:3007/pay-loan' 
+        };
+      
+        const fieldsString = new URLSearchParams(fields).toString();
+      
+        const options = {
+          hostname: 'api.paystack.co',
+          path: '/transaction/initialize',
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer sk_test_',
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': Buffer.byteLength(fieldsString)
+          }
+        };
+      
+         req = https.request(options, (response) => {
+          let responseData = '';
+      
+          response.on('data', (chunk) => {
+            responseData += chunk;
+          });
+      
+          response.on('end', () => {
+            const parsedResponse = JSON.parse(responseData);
+            const authorizationURL = parsedResponse.data.authorization_url;
+            console.log('Authorization URL:', authorizationURL);
+      
+            // Redirect to the authorization URL
+            res.redirect(authorizationURL);
+          });
+        });
+      
+        req.on('error', (error) => {
+          console.error('Request error:', error);
+          res.status(500).send('Internal Server Error');
+        });
+      
+        req.write(fieldsString);
+        req.end();    
+      };

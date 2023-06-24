@@ -15,7 +15,12 @@
     <div class="col-4  p-4 mx-5 my-1 badge text-bg-warning position-relative"  id="Yellow">
         Loans Taken
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            99+
+         <%
+         if(Takens=='null'){
+          0
+         }
+         %>
+          <%= JSON.stringify(Takens) %>
             <span class="visually-hidden">unread messages</span>
           </span>
     </div> <br>

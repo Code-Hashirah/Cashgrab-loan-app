@@ -1,13 +1,17 @@
 const Loans=require('../../models/loansAvailable');
 const session = require('express-session');
 const { validationResult } = require('express-validator');
+const loansTaken = require('../../models/loansTaken');
  
 
 exports.adminDashboard=(req,res)=>{
     let adminData=req.session.user;
     Loans.findAll().then(loans=>{
        Loans.count().then(avail=>{
-        res.render('admin/admin-dashboard.ejs',{title:"Admin Dashboard",Admin:adminData, Loans:loans, Available:avail})
+        loansTaken.count().then(Taken=>{
+            res.render('admin/admin-dashboard.ejs',{title:"Admin Dashboard",Admin:adminData, Loans:loans, Available:avail, Takens:Taken})
+        })
+       
        })
       
     })

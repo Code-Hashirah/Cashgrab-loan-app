@@ -25,33 +25,34 @@ app.use(bodyParser2.json())
 
 
 let storage = multer.diskStorage({
-    destination:(req,files, cb)=>{
-        cb(null,'public/filesFolder')
-    },
-    filename:(req,files, cb)=>{
-      //  fileFilter: function(req, file, cb) {
-            if (files.fieldname === 'picture') {
-              // Filter for image uploads
-              if (files.mimetype === 'image/png' || files.mimetype === 'picture/jpg') {
-                cb(null, true);
-              } else {
-                cb(new Error('Invalid file type for image.'));
-              }
-            } else if (files.fieldname === 'BankStatement'|| files.fieldname === 'ID' ) {
-              // Filter for document uploads
-              if (files.mimetype === 'application/pdf' || files.mimetype === 'application/msword') {
-                cb(null, true);
-              } else {
-                cb(new Error('Invalid file type for document.'));
-              }
-            } else {
-              cb(new Error('Invalid field name.'));
-            }
-         // }
-        
-        cb(null, Date.now()+'file'+files.originalname)
+  destination: (req, files, cb) => {
+    cb(null, 'public/filesFolder');
+  },
+  filename: (req, files, cb) => {
+    const allowedImageTypes = ['image/png', 'image/jpeg'];
+    const allowedDocumentTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+    if (files.fieldname === 'picture' || files.fieldname === 'Picture') {
+      // Filter for image uploads
+      if (allowedImageTypes.includes(files.mimetype)) {
+        cb(null, Date.now() + 'file' + files.originalname);
+      } else {
+        cb(new Error('Invalid file type for image.'));
+      }
+    } else if (files.fieldname === 'BankStatement' || files.fieldname === 'ID') {
+      // Filter for document uploads
+      if (allowedDocumentTypes.includes(files.mimetype)) {
+        cb(null, Date.now() + 'file' + files.originalname);
+      } else {
+        cb(new Error('Invalid file type for document.'));
+      }
+    } else {
+      cb(new Error('Invalid field name: ' + files.fieldname));
     }
-})
+  }
+});
+
+
 //---------------------------
 
 //------------===========
@@ -89,10 +90,10 @@ app.use(UserRoute)
 
  app.get('/500',ErrController.error500 )
 app.use(ErrController.error404)
-app.use((error, req, res, next)=>{
-  next()
-  return res.redirect('/500')
-})
+// app.use((error, req, res, next)=>{
+//   next()
+//   return res.redirect('/500')
+// })
 //  loansTaken.sync({alter:true})
 // Users.sync({alter:true})
 // Loans.sync({force:true})

@@ -4,7 +4,7 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family:Rubik_Gemstones;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         /* font-family: DancingScript; */
     }
    
@@ -27,8 +27,16 @@
 }
 
 .box{
-    color: white;
-    width: 50%;
+    color: black;
+    /* width: 50%; */
+    /* display: flex; */
+    /* justify-content: space-evenly; */
+    padding: 15px;
+}
+
+.box2{
+    color: black;
+    /* width: 50%; */
     display: flex;
     justify-content: space-evenly;
     padding: 15px;
@@ -52,14 +60,29 @@ input{
     padding: 15px;
 }
 #userPic{
-    width: 75px;
-    height: 75px;
-    border-radius: 75px;
+    width: 50%;
+    height: 140px;
+   
+   border-radius: 50%;
 }
 input{
     border-end-end-radius: none;
     border-bottom: 1px solid black;
     outline: none;
+}
+
+
+.side ul li{
+    list-style-type: none;
+    margin: 15px;
+}
+
+.side ul li a{
+    text-decoration: none;
+    color: black;
+}
+.Availabe{
+    background-color: gainsboro;
 }
 /* media query responsiveness  */
 
@@ -81,13 +104,98 @@ input{
 </style>
 </head>
 <body>
+    <%- include ('../includes/navbar.ejs') %>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3  p-4">
+                <div class="side ps-5">
+                    <div><img src="<%=User.picture %>" id="userPic" alt="user picture"></div> <br> 
+                    <p>Welcome  <span ><%=User.name %></span> </p>
+
+                    <ul>
+                        <li><a href="/"> Home</a></li>
+                        <li><a href="/user-dashboard"> Dashboard</a></li>
+                        <li><a href=""> Contact Us</a></li>
+                        <li><a href="/update-profile"> Improve Profile</a></li>
+                        <li><a href="/pay-loan">Payloan</a></li>
+                        <li><a href="/sign-out">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-9  Availabe p-4">
+                <div>
+                    <div class="card col-md-6 offset-md-1">
+                        <% if(isLoggedIn){ %>
+                            <div class="box">
+                                           <div class="text-center"><h5>Your Profile is <%= Percent %>% <i>Complete</i></h5></div> <br> <br>
+                                           <div id="bar" class="progress-bar-striped progress-bar-animated rounded-pill bg-danger" style='width:<%=Percent%>%'><%= Percent %> %</div>
+                                   </div>
+                           <% } %>
+
+                    </div>
+                    <div class="mt-5 ps-5">
+                       <div class="text-center"> <h4>Available Loan</h4></div> <hr>
+                       <% if(Percent >= 70){ %>
+                        <div class="box2">
+                            <% if(!Loans){  %>
+                                <h2>No Loans Availabe </h2>
+                        <%    } 
+                        else{  
+                            for(let loan of Loans) {  %>
+                                <form action="/apply-loan" method="post">
+                               
+                                    <div>
+                                        <input type="text" name="Category" value="<%=loan.loanType %>" disabled >
+                                    </div>
+                                    <div>
+                                        <input type="number" name="Amount" value="<%=loan.amount %>" disabled >
+                                    </div>
+                                    <div>
+                                         <input type="text" name="Duration" value="<%=loan.duration %> Months" disabled >
+                                    </div>
+                                    <!-- <input type="text" name="Category" value="<%=loan.loanType %>" disabled> -->
+                            <input type="hidden" name="Name" value="<%=User.name %>">
+                            <input type="hidden" name="Id" value="<%=User.id %>">
+                            <input type="hidden" name="Bvn" value="<%=User.bvn %>">
+                            <input type="hidden" name="Account" value="<%=User.account %>">
+                            <input type="hidden" name="Picture" value="<%=User.picture %>">
+                            <input type="hidden" name="Email" value="<%=User.email%>">
+                            <input type="hidden" name="Bank" value="<%=User.bank%>">
+                            <input type="hidden" name="Phone" value="<%=User.phone%>">
+                            <input type="hidden" name="LoanType" value="<%=loan.loanType %>">
+                            <input type="hidden" name="LoanAmount" value="<%=loan.amount %>">
+                            <input type="hidden" name="LoanDuration" value="<%=loan.duration %>">
+                            <button type="submit">Get Loan</button>
+                            </form>
+                     <%    }
+                       }
+                        %>
+                            
+                        </div>
+                     <% }
+                     else{  %>
+                        <h2>Complete your Registration to be eligible for loans, click on the update Profile</h2>
+                   <%  }
+                     %>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <%- include ('../includes/footer.ejs') %>
 <main id="main-page">
     <%- include ('../includes/navbar.ejs') %>
    
     <section class="section">
         <% if(isLoggedIn){ %>
         <div class="box">
-                <img src="<%=User.picture %>" id="userPic" alt="user picture">
+                
             </div>
             <% } %>
        
@@ -163,6 +271,6 @@ input{
     </section> 
 </main>
 
-<%- include ('../includes/footer.ejs') %>
+
 </body>
 </html>

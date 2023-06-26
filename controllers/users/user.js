@@ -141,7 +141,7 @@ exports.applyLoan=(req,res)=>{
             console.log(err)
         })
         //This is where the delay timeOut will come
-        const delay = parseInt(takenLoan.duration) * 30 * 24 * 60 * 60 * 1000; //  months * 30 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
+        const delay = parseInt(Math.ceil(takenLoan.duration) * 30 * 24 * 60 * 60*200)+1; //  months * 30 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
         function sendReminder(){
             // Calculate the delay for 4 months in milliseconds
           
@@ -175,7 +175,7 @@ exports.applyLoan=(req,res)=>{
            })
        }
        setTimeout(sendReminder,delay)
-        // console.log(delay/10000)
+        console.log(delay/10000)
         res.redirect('/user-dashboard')
     }).catch(err2=>{
         console.log(err2)
@@ -197,7 +197,7 @@ exports.payBackLoanGet=(req,res)=>{
 
     exports.payBackLoanPost = (req, res) => {
         const https = require('https');
-        const url = 'https://api.paystack.co/transaction/initialize';
+        // const url = 'https://api.paystack.co/transaction/initialize';
         const {Email, Amount}=req.body
         const fields = {
           email: Email,
@@ -212,7 +212,7 @@ exports.payBackLoanGet=(req,res)=>{
           path: '/transaction/initialize',
           method: 'POST',
           headers: {
-            'Authorization': 'Bearer sk_test_',
+            'Authorization': 'Bearer sk_test_681170f9a31ac06f49c31491b927ea78b4bf833e',
             'Cache-Control': 'no-cache',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': Buffer.byteLength(fieldsString)

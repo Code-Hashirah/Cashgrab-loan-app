@@ -104,49 +104,7 @@ label{
        }
        %>
       
-    </main>    
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        let form=document.getElementById('form')
-        form.addEventListener('submit',send)
-        let loadStatus=document.getElementById('submit')
-        function send(e){
-            e.preventDefault();
-            loadStatus.value="Loading..."
     
-            let Type=document.getElementById('Type').value;
-            let Duration=document.getElementById('Duration').value;
-            let Amount=document.getElementById('Amount').value;
-    
-            let loanData = {loanType:Type,duration:Duration, amount:Amount };
-   
-            axios.post('/admin-add-loan', loanData)
-            
-                .then(response => {
-                    console.log(response)
-                    loadStatus.value="Submit";
-                    if(response.data.success){
-                        document.getElementById('success').innerHTML = `
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            <strong>Success!</strong> Product submitted successfully 
-                        </div>`;
-                        setTimeout(() => {
-                            window.location='/admin-dashboard';
-                        }, 3000);
-                    }
-                })
-                .catch(error => {zxc   
-                    console.log(error);
-                    loadStatus.value="Submit";
-                    document.getElementById('error').innerHTML = `
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        <strong>Oops!</strong> An error occurred while submitting the product.
-                    </div>`;
-                });
-        }
-    </script> -->
     
     <%- include('../includes/admin-footer.ejs') %>
 </body>

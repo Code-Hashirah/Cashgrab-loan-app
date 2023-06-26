@@ -117,6 +117,7 @@ exports.signIn=(req,res)=>{
         email:Email
     }}).then(userDetails=>{
         if(!userDetails){
+
             req.flash('error', 'User  email or password incorrect')
             return req.session.save(() => {
                 res.redirect('/sign-in')
@@ -124,6 +125,7 @@ exports.signIn=(req,res)=>{
             })
             
         }else{
+
         bcrypt.compare(Password,userDetails.password).then(verifiedUser=>{
             if(!verifiedUser){
                 req.flash('error', 'Email or password incorrect')

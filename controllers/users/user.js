@@ -213,7 +213,7 @@ exports.payBackLoanGet=(req,res)=>{
           path: '/transaction/initialize',
           method: 'POST',
           headers: {
-            'Authorization': 'Bearer sk_test_681170f9a31ac06f49c31491b927ea78b4bf833e',
+            'Authorization': 'Bearer ',
             'Cache-Control': 'no-cache',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': Buffer.byteLength(fieldsString)
